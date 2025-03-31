@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
 
-const Bottombar = ({ setActiveFile, ref, token, username }) => {
+const Bottombar = ({ setActiveFile, token, username }) => {
   const [activeFolder, setActiveFolder] = useState("Notes");
   const [folders, setFolders] = useState({
     Notes: {
@@ -86,7 +86,7 @@ const Bottombar = ({ setActiveFile, ref, token, username }) => {
   }, [activeFolder]);
 
   return (
-    <div className={"bottom-bar"} ref={ref}>
+    <div className={"bottom-bar"}>
       <GitHubActivity username={username} token={token} />
       {/* Show active folder data */}
       <ShowCase
@@ -109,8 +109,8 @@ const Bottombar = ({ setActiveFile, ref, token, username }) => {
             <h4>{folders[folderKey].title}</h4>
             <img
               src={folders[folderKey].icon}
-              height={20}
-              width={20}
+              height={15}
+              width={15}
               alt={folders[folderKey].title}
             />
           </button>

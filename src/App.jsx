@@ -18,14 +18,13 @@ function App() {
       }, 200);
     } else {
       editorRef.current.style.opacity = 0;
-
       setTimeout(() => {
         editorRef.current.style.display = "none";
         bottomRef.current.style.display = "block";
         setTimeout(() => {
           bottomRef.current.style.opacity = 1;
         }, 10);
-      }, 200);
+      }, 190);
     }
   }, [activeFile]);
 
@@ -83,18 +82,19 @@ function App() {
       <div className="drag-place"></div>
       <div className="container">
         <div className="wrapper">
-          <Topbar
-            token={token}
-            setToken={setToken}
-            username={username}
-            setUsername={setUsername}
-          />
-          <Bottombar
-            setActiveFile={setActiveFile}
-            ref={bottomRef}
-            token={token}
-            username={username}
-          />
+          <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
+            <Topbar
+              token={token}
+              setToken={setToken}
+              username={username}
+              setUsername={setUsername}
+            />
+            <Bottombar
+              setActiveFile={setActiveFile}
+              token={token}
+              username={username}
+            />
+          </div>
           <MarkdownEditor editorRef={editorRef} setActiveFile={setActiveFile} />
         </div>
       </div>

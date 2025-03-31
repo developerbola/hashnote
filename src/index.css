@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
@@ -85,17 +86,20 @@ html {
   font-size: 20px;
   margin-bottom: -5px;
 }
+
 .notes-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .notes-title {
   opacity: 50%;
   display: flex;
   align-items: center;
   gap: 3px;
 }
+
 .new-button {
   background: transparent;
   padding: 3px 10px;
@@ -103,14 +107,17 @@ html {
   border: none;
   outline: none;
 }
+
 .notes-wrapper {
   padding: 10px;
   max-height: 250px;
   overflow-y: auto;
 }
+
 .notes-title .title {
   font-family: JetBrains;
 }
+
 .note-link {
   display: flex;
   align-items: center;
@@ -119,6 +126,7 @@ html {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .note-link-title {
   display: flex;
   align-items: center;
@@ -129,9 +137,11 @@ html {
 .note-link:hover {
   background-color: #ffffff10;
 }
+
 .note-link img {
   opacity: 80%;
 }
+
 .note-link h3 {
   font-family: Montserrat;
 }
@@ -144,15 +154,14 @@ html {
 .mdx-wrapper {
   display: none;
   opacity: 0;
-  height: 450px;
+  height: 465px;
   transition: all 200ms ease;
   cursor: text;
-  margin: 10px 0;
-  cursor: text;
+  margin-top: -15px;
 }
 
 .mdx-editor {
-  height: 450px;
+  height: 465px;
 }
 
 .mdx-editor,
@@ -164,17 +173,6 @@ html {
   font-weight: normal;
 }
 
-.back-button {
-  background: transparent;
-  border: none;
-  outline: none;
-  opacity: 0.4;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 5px 0;
-}
-
 .folder-links-wrapper {
   position: absolute;
   top: 93%;
@@ -183,9 +181,11 @@ html {
   align-items: center;
   width: 540px;
 }
+
 .folder-links-wrapper h4 {
   font-family: JetBrains;
 }
+
 .folder-link {
   display: flex;
   align-items: center;
@@ -211,6 +211,7 @@ html {
   place-items: center;
   cursor: pointer;
 }
+
 .bottom-bar {
   transition: all 200ms ease;
 }
@@ -277,6 +278,7 @@ html {
   transition: all 0.3s ease;
   resize: none;
 }
+
 textarea.settings-field {
   height: 75px;
 }

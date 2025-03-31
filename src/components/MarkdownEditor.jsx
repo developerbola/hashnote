@@ -8,29 +8,32 @@ import {
   quotePlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
+import { useEffect } from "react";
 
 const MarkdownEditor = ({ editorRef, setActiveFile }) => {
+  let lastTriggerTime = 0;
+
+  const handleWheel = (e) => {
+    const now = Date.now();
+
+    if (e.deltaX < -50 && now - lastTriggerTime > 500) {
+      setActiveFile(false);
+      lastTriggerTime = now;
+    }
+  };
+
+  useEffect(() => {
+    const wrapper = document.getElementById("mdx-wrapper");
+    if (!wrapper) return;
+
+    wrapper.addEventListener("wheel", handleWheel);
+    return () => wrapper.removeEventListener("wheel", handleWheel);
+  }, []);
+
   return (
-    <div
-      className="mdx-wrapper"
-      ref={editorRef}
-    >
-      <button
-        onClick={() => {
-          setActiveFile(false);
-        }}
-        className="back-button"
-      >
-        <img
-          src="./svg_icons/back.svg"
-          height={15}
-          width={15}
-          style={{ filter: "invert(1)" }}
-        />
-        Back
-      </button>
+    <div className="mdx-wrapper" ref={editorRef} id="mdx-wrapper">
       <MDXEditor
-        markdown="## New file"
+        markdown="## New Notes"
         plugins={[
           headingsPlugin(),
           quotePlugin({}),
