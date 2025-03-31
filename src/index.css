@@ -214,7 +214,8 @@ html {
 .settings-container {
   position: absolute;
   top: 15px;
-  background: #5a5a5a20;
+  background: #33333320;
+  border: 1px solid #ffffff08;
   height: 570px;
   width: 400px;
   padding: 20px 25px;
