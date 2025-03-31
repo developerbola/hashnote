@@ -42,7 +42,6 @@ function App() {
       // Check if token file exists
       if (fs.existsSync(filePath)) {
         const token = fs.readFileSync(filePath, "utf-8");
-        console.log("Token read successfully:", token);
         return token;
       } else {
         console.warn("Token file does not exist.");
@@ -66,7 +65,6 @@ function App() {
       // Check if token file exists
       if (fs.existsSync(filePath)) {
         const username = fs.readFileSync(filePath, "utf-8");
-        console.log("Username read successfully:", username);
         return username;
       } else {
         console.warn("Username file does not exist.");

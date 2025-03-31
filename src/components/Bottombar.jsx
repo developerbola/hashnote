@@ -43,7 +43,7 @@ const Bottombar = ({ setActiveFile, ref, token, username }) => {
 
         const files = fs.readdirSync(directory);
         updatedFolders[folderKey].data = files.map((fileName) => ({
-          title: fileName,
+          title: fileName.split(".")[0].split("-").join(" "),
           path: path.join(directory, fileName),
         }));
       });
@@ -70,9 +70,6 @@ const Bottombar = ({ setActiveFile, ref, token, username }) => {
 
       if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, "");
-        console.log("token.txt created.");
-      } else {
-        console.log("token.txt already exists.");
       }
     } catch (e) {
       console.error("Error:", e);
@@ -87,8 +84,6 @@ const Bottombar = ({ setActiveFile, ref, token, username }) => {
   useEffect(() => {
     loadFilesFromDisk();
   }, [activeFolder]);
-
-  console.log(token);
 
   return (
     <div className={"bottom-bar"} ref={ref}>

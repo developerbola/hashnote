@@ -24,6 +24,7 @@ img {
 
 html {
   background: #151515;
+  overflow-x: hidden;
 }
 
 .drag-place {
@@ -40,11 +41,14 @@ html {
   max-width: 600px;
   margin: auto;
 }
+
 .topbar-container {
   display: flex;
   align-items: start;
   justify-content: space-between;
+  max-width: 600px;
 }
+
 .topbar-wrapper {
   display: flex;
   align-items: center;

@@ -1,7 +1,7 @@
 // In ShowCase.jsx
 import { useEffect, useRef, useState } from "react";
 
-const ShowCase = ({ data, setActiveFile }) => {
+const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
   const showcaseRef = useRef(null);
   const [datas, setDatas] = useState([]);
   const [opacity, setOpacity] = useState(1);
@@ -34,13 +34,10 @@ const ShowCase = ({ data, setActiveFile }) => {
       const filePath = path.join(folderPath, `New-${datas.title}.txt`);
 
       fs.writeFileSync(filePath, `New-${datas.title}`);
-
-      console.log(`File saved to ${filePath}`);
       loadFilesFromDisk();
       return filePath;
     } catch (error) {
       console.error("Error saving file:", error);
-      throw error;
     }
   };
 
@@ -72,8 +69,6 @@ const ShowCase = ({ data, setActiveFile }) => {
       }
 
       fs.unlinkSync(filePath);
-      console.log(`Deleted file: ${filePath}`);
-
       loadFilesFromDisk();
     } catch (error) {
       console.error("Error deleting file:", error);
