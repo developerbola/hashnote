@@ -245,6 +245,7 @@ html {
   background: #ffffff08 !important;
   border: none;
 }
+
 ._linkDialogPopoverContent_uazmk_600 form button:hover {
   background: #ffffff15 !important;
 }
@@ -399,18 +400,21 @@ textarea.settings-field {
 
 .settings-btn {
   background: transparent;
-  border: none;
   outline: none;
-  background: #ffffff20;
+  border: 1px solid #2d2d2d;
   padding: 6px 2px;
   padding-top: 7px;
   border-radius: 8px;
   font-size: 14px;
   width: 60px;
   cursor: pointer;
-  transition: 200ms all ease;
+  transition: all 200ms ease;
   display: grid;
   place-items: center;
+}
+
+.settings-btn:hover {
+  background: #2d2d2d;
 }
 
 .settings-btn:active {
