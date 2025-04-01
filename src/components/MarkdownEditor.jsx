@@ -1,17 +1,16 @@
 import {
   MDXEditor,
-  codeBlockPlugin,
   headingsPlugin,
   linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   quotePlugin,
-  thematicBreakPlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const MarkdownEditor = ({ editorRef, setActiveFile }) => {
+  const [editorValue, setEditorValue] = useState("## New Note");
   let lastTriggerTime = 0;
 
   const handleWheel = (e) => {
@@ -26,28 +25,51 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   useEffect(() => {
     const wrapper = document.getElementById("mdx-wrapper");
     if (!wrapper) return;
-
     wrapper.addEventListener("wheel", handleWheel);
     return () => wrapper.removeEventListener("wheel", handleWheel);
   }, []);
 
+  useEffect(() => {
+    document.querySelectorAll(".mdx-editor blockquote span").forEach((el) => {
+      if (el.innerHTML.includes("Warn:")) {
+        const blockquote = el.closest("blockquote");
+        if (blockquote) {
+          blockquote.style.borderColor = " #ffee00";
+          blockquote.style.background = "#ffee0020";
+        }
+      }
+      if (el.innerHTML.includes("Alert:")) {
+        const blockquote = el.closest("blockquote");
+        if (blockquote) {
+          blockquote.style.borderColor = " #ff0059";
+          blockquote.style.background = "#ff005920";
+        }
+      }
+      if (el.innerHTML.includes("Success:")) {
+        const blockquote = el.closest("blockquote");
+        if (blockquote) {
+          blockquote.style.borderColor = " #00ff3c";
+          blockquote.style.background = "#00ff3c20";
+        }
+      }
+    });
+  }, [editorValue]);
+
   return (
     <div className="mdx-wrapper" ref={editorRef} id="mdx-wrapper">
       <MDXEditor
-        markdown={
-          "## New Note\n\n```javascript\nconsole.log('Hello, World!');\n```"
-        }
         plugins={[
           headingsPlugin(),
           quotePlugin({}),
           listsPlugin(),
           linkPlugin({}),
           markdownShortcutPlugin(),
-          codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
-          thematicBreakPlugin(),
         ]}
-        autoFocus
-        contentEditableClassName="mdx-editor dark"
+        contentEditableClassName="mdx-editor"
+        onChange={(e) => {
+          setEditorValue(e);
+        }}
+        markdown={editorValue}
       />
     </div>
   );

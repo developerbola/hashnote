@@ -164,6 +164,7 @@ html {
 
 .note-link h3 {
   font-family: Montserrat;
+  font-weight: normal;
   padding-bottom: 1px;
 }
 
@@ -206,10 +207,22 @@ html {
   color: #00a2ff;
 }
 
-.mdx-editor p code span {
-  background: transparent!important;
-  border: 1px solid #ffffff30;
+.mdx-editor h2:has(code),
+.mdx-editor h3:has(code),
+.mdx-editor h4:has(code),
+.mdx-editor h5:has(code),
+.mdx-editor h6:has(code) {
+  margin: 1px 0;
+}
+
+.mdx-editor code {
+  font-family: JetBrains;
+}
+
+.mdx-editor code span {
   border-radius: 4px;
+  background: transparent !important;
+  border: 1px solid #ffffff30;
 }
 
 ._linkDialogPopoverContent_uazmk_600 {
