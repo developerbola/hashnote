@@ -12,6 +12,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -172,6 +186,42 @@ html {
   caret-color: #fff;
   font-family: Montserrat;
   font-weight: normal;
+}
+
+.mdx-editor blockquote {
+  padding: 5px 15px;
+  border-left: 2px solid #fff;
+  background: #ffffff11;
+  margin: 5px 0;
+}
+
+.mdx-editor p a span,
+.mdx-editor p a {
+  color: #00a2ff;
+}
+
+._linkDialogPopoverContent_uazmk_600 {
+  background: #181818 !important;
+  border: 1px solid #ffffff10 !important;
+  padding: 3px 10px !important;
+}
+
+._linkDialogPopoverContent_uazmk_600 button:hover {
+  background: #191919 !important;
+  cursor: pointer;
+}
+
+._linkDialogPopoverContent_uazmk_600 input {
+  background: transparent !important;
+  border: 1px solid #ffffff11;
+}
+
+._linkDialogPopoverContent_uazmk_600 form button {
+  background: #ffffff08 !important;
+  border: none;
+}
+._linkDialogPopoverContent_uazmk_600 form button:hover {
+  background: #ffffff15 !important;
 }
 
 .folder-links-wrapper {

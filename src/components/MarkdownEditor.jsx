@@ -39,11 +39,10 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
           quotePlugin({}),
           listsPlugin(),
           linkPlugin({}),
-          linkDialogPlugin(),
           markdownShortcutPlugin(),
         ]}
         autoFocus
-        contentEditableClassName="mdx-editor"
+        contentEditableClassName="mdx-editor dark"
       />
     </div>
   );
