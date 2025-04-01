@@ -305,12 +305,18 @@ html {
   transition: 400ms left ease;
   z-index: 10;
   font-family: Montserrat;
+  font-weight: normal;
 }
 
 .titlebar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.titlebar h2,
+.settings-item h4 {
+  font-weight: normal;
 }
 
 .titlebar img {
@@ -372,15 +378,15 @@ textarea.settings-field {
   border: none;
   outline: none;
   background: #ffffff20;
-  padding: 8px 10px;
+  padding: 6px 2px;
+  padding-top: 7px;
   border-radius: 8px;
   font-size: 14px;
-  width: 80px;
+  width: 60px;
   cursor: pointer;
   transition: 200ms all ease;
   display: grid;
   place-items: center;
-  padding-top: 9px;
 }
 
 .settings-btn:active {

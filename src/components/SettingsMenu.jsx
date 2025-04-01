@@ -25,7 +25,7 @@ const SettingsMenu = ({
         fs.mkdirSync(appBaseDir, { recursive: true });
       }
 
-      fs.writeFileSync(filePath, cToken, "utf-8"); // ✅ FIXED: Writing cToken, not token
+      fs.writeFileSync(filePath, cToken, "utf-8");
 
       console.log("Token saved successfully:", cToken);
     } catch (e) {
@@ -47,7 +47,7 @@ const SettingsMenu = ({
         fs.mkdirSync(appBaseDir, { recursive: true });
       }
 
-      fs.writeFileSync(filePath, cUsername, "utf-8"); // ✅ FIXED: Writing cUsername, not token
+      fs.writeFileSync(filePath, cUsername, "utf-8");
 
       console.log("Username saved successfully:", cUsername);
     } catch (e) {
@@ -78,8 +78,10 @@ const SettingsMenu = ({
           <button
             className="settings-btn"
             onClick={() => {
-              saveUsername();
-              setUsername(cUsername);
+              if (username !== cUsername) {
+                saveUsername();
+                setUsername(cUsername);
+              }
             }}
           >
             Save
@@ -95,8 +97,10 @@ const SettingsMenu = ({
           <button
             className="settings-btn"
             onClick={() => {
-              saveToken();
-              setToken(cToken);
+              if (token !== cToken) {
+                saveToken();
+                setToken(cToken);
+              }
             }}
           >
             Save
