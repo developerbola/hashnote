@@ -25,6 +25,12 @@
   font-weight: bold;
   font-style: italic;
 }
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-MediumItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
 
 * {
   padding: 0;
@@ -198,6 +204,12 @@ html {
 .mdx-editor p a span,
 .mdx-editor p a {
   color: #00a2ff;
+}
+
+.mdx-editor p code span {
+  background: transparent!important;
+  border: 1px solid #ffffff30;
+  border-radius: 4px;
 }
 
 ._linkDialogPopoverContent_uazmk_600 {

@@ -1,11 +1,12 @@
 import {
   MDXEditor,
+  codeBlockPlugin,
   headingsPlugin,
-  linkDialogPlugin,
   linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   quotePlugin,
+  thematicBreakPlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { useEffect } from "react";
@@ -33,13 +34,17 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   return (
     <div className="mdx-wrapper" ref={editorRef} id="mdx-wrapper">
       <MDXEditor
-        markdown="## New Note"
+        markdown={
+          "## New Note\n\n```javascript\nconsole.log('Hello, World!');\n```"
+        }
         plugins={[
           headingsPlugin(),
           quotePlugin({}),
           listsPlugin(),
           linkPlugin({}),
           markdownShortcutPlugin(),
+          codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
+          thematicBreakPlugin(),
         ]}
         autoFocus
         contentEditableClassName="mdx-editor dark"
