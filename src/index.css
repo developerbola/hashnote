@@ -335,6 +335,8 @@ html {
   z-index: 10;
   font-family: Montserrat;
   font-weight: normal;
+  display: flex;
+  flex-direction: column;
 }
 
 .titlebar {
@@ -400,4 +402,13 @@ textarea.settings-field {
 
 .settings-field::placeholder {
   color: #ffffff80;
+}
+
+.version {
+  align-self: self-end;
+  margin-top: auto;
+  font-family: JetBrains;
+  font-size: 14px;
+  opacity: 0.4;
+  user-select: none;
 }

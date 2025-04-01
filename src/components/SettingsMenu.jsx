@@ -98,6 +98,9 @@ const SettingsMenu = ({
           />
         </div>
       </div>
+      <div className="version">
+        <p>v1.0.0</p>
+      </div>
     </div>
   );
 };
