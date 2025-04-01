@@ -33,7 +33,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   return (
     <div className="mdx-wrapper" ref={editorRef} id="mdx-wrapper">
       <MDXEditor
-        markdown="## New Notes"
+        markdown="## New Note"
         plugins={[
           headingsPlugin(),
           quotePlugin({}),

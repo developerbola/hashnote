@@ -135,7 +135,7 @@ html {
 }
 
 .note-link:hover {
-  background-color: #ffffff10;
+  background-color: #ffffff09;
 }
 
 .note-link img {
@@ -144,6 +144,7 @@ html {
 
 .note-link h3 {
   font-family: Montserrat;
+  padding-bottom: 1px;
 }
 
 .note-link.add {
