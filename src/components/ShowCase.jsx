@@ -11,7 +11,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
     const timeout = setTimeout(() => {
       setDatas(data);
       setOpacity(1);
-    }, 350);
+    }, 200);
     return () => clearTimeout(timeout);
   }, [data]);
 
@@ -79,7 +79,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
     <div
       ref={showcaseRef}
       style={{
-        transition: "opacity 200ms ease-in-out",
+        transition: "opacity 100ms ease-in-out",
         opacity: opacity,
       }}
     >

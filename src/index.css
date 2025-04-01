@@ -249,6 +249,30 @@ html {
   background: #ffffff15 !important;
 }
 
+._listItemUnchecked_1tncs_74::before {
+  border-radius: 4px !important;
+}
+
+._listItemChecked_1tncs_73::before {
+  border-radius: 4px !important;
+  background-color: white !important;
+  border: none !important;
+  height: 18px !important;
+  width: 18px !important;
+}
+
+._listItemChecked_1tncs_73::after {
+  top: 3px !important;
+  border-width: 0 1.5px 1.5px 0 !important;
+  border-color: black !important;
+}
+
+._listItemUnchecked_1tncs_74:focus::before,
+._listItemChecked_1tncs_73:focus::before {
+  box-shadow: none !important;
+  border-radius: 4px !important;
+}
+
 .folder-links-wrapper {
   position: absolute;
   top: 93%;
