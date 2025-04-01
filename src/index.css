@@ -39,6 +39,10 @@
   color: #fff;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 img {
   -webkit-user-drag: none;
 }
@@ -176,14 +180,14 @@ html {
 .mdx-wrapper {
   display: none;
   opacity: 0;
-  height: 465px;
+  min-height: 465px;
   transition: all 200ms ease;
   cursor: text;
   margin-top: -15px;
 }
 
 .mdx-editor {
-  height: 465px;
+  min-height: 465px;
 }
 
 .mdx-editor,
