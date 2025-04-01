@@ -37,6 +37,7 @@
   margin: 0;
   box-sizing: border-box;
   color: #fff;
+  -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -142,7 +143,7 @@ html {
   font-family: JetBrains;
 }
 
-.note-link {
+.showcase-link {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -151,28 +152,28 @@ html {
   cursor: pointer;
 }
 
-.note-link-title {
+.showcase-link-title {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
 }
 
-.note-link:hover {
+.showcase-link:hover {
   background-color: #ffffff09;
 }
 
-.note-link img {
+.showcase-link img {
   opacity: 80%;
 }
 
-.note-link h3 {
+.showcase-link h3 {
   font-family: Montserrat;
   font-weight: normal;
   padding-bottom: 1px;
 }
 
-.note-link.add {
+.showcase-link.add {
   padding: 10px;
   opacity: 50%;
 }
@@ -199,7 +200,8 @@ html {
   font-weight: normal;
 }
 
-.mdx-editor blockquote {
+.mdx-editor blockquote,
+blockquote {
   padding: 5px 15px;
   border-left: 2px solid #fff;
   background: #ffffff11;
@@ -223,7 +225,7 @@ html {
   font-family: JetBrains;
 }
 
-.mdx-editor code span {
+code span {
   border-radius: 4px;
   background: transparent !important;
   border: 1px solid #ffffff30;
@@ -278,13 +280,23 @@ html {
   border-radius: 4px !important;
 }
 
-.folder-links-wrapper {
+.bottom-bar {
+  transition: all 200ms ease;
+}
+
+.footbar {
   position: absolute;
   top: 93%;
   left: 20px;
+  width: 540px;
   display: flex;
   align-items: center;
-  width: 540px;
+  justify-content: space-between;
+}
+
+.folder-links-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .folder-links-wrapper h4 {
@@ -308,17 +320,142 @@ html {
   opacity: 50%;
 }
 
-.add-folder {
+.about-btn {
   background: transparent;
   border: none;
   outline: none;
-  display: grid;
-  place-items: center;
+  opacity: 0.2;
+  margin-right: -10px;
   cursor: pointer;
 }
 
-.bottom-bar {
+.about-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #151515aa;
+  backdrop-filter: blur(30px);
+  font-family: Montserrat;
+  font-weight: normal;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(-20px);
   transition: all 200ms ease;
+  visibility: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.about-page.visible {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.about-page .section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 30px;
+  scroll-snap-align: start;
+  overflow-y: auto;
+}
+
+.section .title {
+  display: flex;
+  align-items: center;
+}
+
+.section .title img {
+  height: 40px;
+  width: 50px;
+  object-fit: cover;
+}
+
+.actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action div:nth-child(1) h3 {
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.option.lists {
+  flex-direction: column;
+  align-items: start;
+}
+
+.option > * {
+  font-weight: normal;
+}
+
+.option em {
+  font-style: italic;
+}
+
+.action span {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: transparent !important;
+  border: 1px solid #ffffff30;
+}
+
+.action .checkbox {
+  background: transparent;
+  cursor: pointer;
+}
+
+.action .checkbox[type="checkbox"]::before {
+  content: "";
+  position: relative;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fff;
+  background: #151515;
+  border-radius: 4px;
+}
+
+.action .checkbox[type="checkbox"]:checked:before {
+  border: none;
+  background: #fff;
+  width: 16px;
+  height: 16px;
+}
+
+.action .checkbox[type="checkbox"]::after {
+  content: "";
+  position: relative;
+  display: block;
+  left: 3px;
+  top: -12px;
+  width: 8px;
+  height: 4px;
+  background: transparent;
+  border: 2px solid #000;
+  border-top: none;
+  border-right: none;
+  rotate: -45deg;
 }
 
 .settings-container {

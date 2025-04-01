@@ -97,11 +97,11 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
         {datas.data?.map((note, idx) => (
           <div
             key={idx}
-            className="note-link"
+            className="showcase-link"
             onClick={() => setActiveFile(true)}
           >
             <img src="./svg_icons/hashtag.svg" height={13} width={13} />
-            <div className="note-link-title">
+            <div className="showcase-link-title">
               <h3>{note.title}</h3>
               <img
                 src="./svg_icons/trash.svg"

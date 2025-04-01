@@ -16,7 +16,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   const handleWheel = (e) => {
     const now = Date.now();
 
-    if (e.deltaX < -50 && now - lastTriggerTime > 500) {
+    if (e.deltaX < -30 && now - lastTriggerTime > 500) {
       setActiveFile(false);
       lastTriggerTime = now;
     }
@@ -30,26 +30,33 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   }, []);
 
   useEffect(() => {
-    document.querySelectorAll(".mdx-editor blockquote span").forEach((el) => {
-      if (el.innerHTML.includes("Warn:")) {
+    document.querySelectorAll("blockquote span").forEach((el) => {
+      if (el.innerHTML.includes("Warning:")) {
         const blockquote = el.closest("blockquote");
         if (blockquote) {
-          blockquote.style.borderColor = " #ffee00";
+          blockquote.style.borderColor = "#ffee00";
           blockquote.style.background = "#ffee0020";
         }
       }
-      if (el.innerHTML.includes("Alert:")) {
+      if (el.innerHTML.includes("Danger:")) {
         const blockquote = el.closest("blockquote");
         if (blockquote) {
-          blockquote.style.borderColor = " #ff0059";
+          blockquote.style.borderColor = "#ff0059";
           blockquote.style.background = "#ff005920";
         }
       }
       if (el.innerHTML.includes("Success:")) {
         const blockquote = el.closest("blockquote");
         if (blockquote) {
-          blockquote.style.borderColor = " #00ff3c";
+          blockquote.style.borderColor = "#00ff3c";
           blockquote.style.background = "#00ff3c20";
+        }
+      }
+      if (el.innerHTML.includes("Info:")) {
+        const blockquote = el.closest("blockquote");
+        if (blockquote) {
+          blockquote.style.borderColor = "#00d8ff";
+          blockquote.style.background = "#00d8ff20";
         }
       }
     });

@@ -17,6 +17,7 @@ function createWindow() {
     resizable: false,
     transparent: true,
     backgroundColor: "#151515",
+    alwaysOnTop: true,
     webPreferences: {
       preload: `file://${__dirname}/preload.js`,
       nodeIntegration: true,

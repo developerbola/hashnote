@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
+import AboutButton from "./AboutButton";
 
 const Bottombar = ({ setActiveFile, token, username }) => {
   const [activeFolder, setActiveFolder] = useState("Notes");
@@ -29,9 +30,7 @@ const Bottombar = ({ setActiveFile, token, username }) => {
       const os = window.require("os");
 
       const homeDir = os.homedir();
-
       const appBaseDir = path.join(homeDir, ".hashnote");
-
       const updatedFolders = { ...folders };
 
       Object.keys(updatedFolders).forEach((folderKey) => {
@@ -95,26 +94,29 @@ const Bottombar = ({ setActiveFile, token, username }) => {
         loadFilesFromDisk={loadFilesFromDisk}
       />
 
-      <div className="folder-links-wrapper">
-        {Object.keys(folders).map((folderKey) => (
-          <button
-            key={folderKey}
-            className={`folder-link ${
-              activeFolder === folderKey ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveFolder(folderKey);
-            }}
-          >
-            <h4>{folders[folderKey].title}</h4>
-            <img
-              src={folders[folderKey].icon}
-              height={15}
-              width={15}
-              alt={folders[folderKey].title}
-            />
-          </button>
-        ))}
+      <div className="footbar">
+        <div className="folder-links-wrapper">
+          {Object.keys(folders).map((folderKey) => (
+            <button
+              key={folderKey}
+              className={`folder-link ${
+                activeFolder === folderKey ? "active" : ""
+              }`}
+              onClick={() => {
+                setActiveFolder(folderKey);
+              }}
+            >
+              <h4>{folders[folderKey].title}</h4>
+              <img
+                src={folders[folderKey].icon}
+                height={15}
+                width={15}
+                alt={folders[folderKey].title}
+              />
+            </button>
+          ))}
+        </div>
+        <AboutButton />
       </div>
     </div>
   );
