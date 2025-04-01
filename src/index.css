@@ -107,13 +107,13 @@ html {
   margin-bottom: -5px;
 }
 
-.notes-header {
+.showcase-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.notes-title {
+.showcase-title {
   opacity: 50%;
   display: flex;
   align-items: center;
@@ -128,13 +128,13 @@ html {
   outline: none;
 }
 
-.notes-wrapper {
+.showcase-wrapper {
   padding: 10px;
   max-height: 250px;
   overflow-y: auto;
 }
 
-.notes-title .title {
+.showcase-title .title {
   font-family: JetBrains;
 }
 
@@ -320,7 +320,7 @@ html {
 .settings-container {
   position: absolute;
   top: 15px;
-  background: #33333320;
+  background: #11111170;
   border: 1px solid #ffffff08;
   height: 570px;
   width: 400px;
@@ -396,27 +396,4 @@ textarea.settings-field {
 
 .settings-field::placeholder {
   color: #ffffff80;
-}
-
-.settings-btn {
-  background: transparent;
-  outline: none;
-  border: 1px solid #2d2d2d;
-  padding: 6px 2px;
-  padding-top: 7px;
-  border-radius: 8px;
-  font-size: 14px;
-  width: 60px;
-  cursor: pointer;
-  transition: all 200ms ease;
-  display: grid;
-  place-items: center;
-}
-
-.settings-btn:hover {
-  background: #2d2d2d;
-}
-
-.settings-btn:active {
-  scale: 0.95;
 }

@@ -62,7 +62,20 @@ const SettingsMenu = ({
     >
       <div className="titlebar">
         <h2>Settings</h2>
-        <button className="close-btn" onClick={() => setActive(!active)}>
+        <button
+          className="close-btn"
+          onClick={() => {
+            setActive(!active);
+            if (username !== cUsername) {
+              saveUsername();
+              setUsername(cUsername);
+            }
+            if (token !== cToken) {
+              saveToken();
+              setToken(cToken);
+            }
+          }}
+        >
           <img src="./svg_icons/plus.svg" height={22} width={22} />
         </button>
       </div>
@@ -75,17 +88,6 @@ const SettingsMenu = ({
             onChange={(e) => setCUsername(e.target.value)}
             value={cUsername}
           />
-          <button
-            className="settings-btn"
-            onClick={() => {
-              if (username !== cUsername) {
-                saveUsername();
-                setUsername(cUsername);
-              }
-            }}
-          >
-            Save
-          </button>
         </div>
         <div className="settings-item">
           <h4>Github Token</h4>
@@ -94,17 +96,6 @@ const SettingsMenu = ({
             onChange={(e) => setCToken(e.target.value)}
             value={cToken}
           />
-          <button
-            className="settings-btn"
-            onClick={() => {
-              if (token !== cToken) {
-                saveToken();
-                setToken(cToken);
-              }
-            }}
-          >
-            Save
-          </button>
         </div>
       </div>
     </div>

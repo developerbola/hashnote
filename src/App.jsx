@@ -81,22 +81,20 @@ function App() {
     <>
       <div className="drag-place"></div>
       <div className="container">
-        <div className="wrapper">
-          <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
-            <Topbar
-              token={token}
-              setToken={setToken}
-              username={username}
-              setUsername={setUsername}
-            />
-            <Bottombar
-              setActiveFile={setActiveFile}
-              token={token}
-              username={username}
-            />
-          </div>
-          <MarkdownEditor editorRef={editorRef} setActiveFile={setActiveFile} />
+        <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
+          <Topbar
+            token={token}
+            setToken={setToken}
+            username={username}
+            setUsername={setUsername}
+          />
+          <Bottombar
+            setActiveFile={setActiveFile}
+            token={token}
+            username={username}
+          />
         </div>
+        <MarkdownEditor editorRef={editorRef} setActiveFile={setActiveFile} />
       </div>
     </>
   );

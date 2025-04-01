@@ -1,4 +1,3 @@
-// In ShowCase.jsx
 import { useEffect, useRef, useState } from "react";
 
 const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
@@ -11,7 +10,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
     const timeout = setTimeout(() => {
       setDatas(data);
       setOpacity(1);
-    }, 200);
+    }, 250);
     return () => clearTimeout(timeout);
   }, [data]);
 
@@ -79,12 +78,12 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
     <div
       ref={showcaseRef}
       style={{
-        transition: "opacity 100ms ease-in-out",
+        transition: "opacity 170ms ease-in-out",
         opacity: opacity,
       }}
     >
-      <div className="notes-header">
-        <div className="notes-title">
+      <div className="showcase-header">
+        <div className="showcase-title">
           <h3 className="title">{datas.title}</h3>
           <img src={datas.icon} height={20} width={20} />
         </div>
@@ -94,7 +93,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
           </button>
         </div>
       </div>
-      <div className="notes-wrapper">
+      <div className="showcase-wrapper">
         {datas.data?.map((note, idx) => (
           <div
             key={idx}
