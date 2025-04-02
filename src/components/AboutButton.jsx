@@ -8,7 +8,7 @@ const AboutButton = () => {
   const handleWheel = (e) => {
     const now = Date.now();
 
-    if (e.deltaX < -30 && now - lastTriggerTime > 500) {
+    if (e.deltaX < -20 && now - lastTriggerTime > 200) {
       setIsPageVisible(false);
       lastTriggerTime = now;
     }

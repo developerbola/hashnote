@@ -17,7 +17,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
   return (
     <div
       style={{
-        transition: "opacity 200ms ease-in-out",
+        transition: "opacity 150ms ease-in-out",
         opacity: opacity,
       }}
     >
