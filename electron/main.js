@@ -6,9 +6,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 let mainWindow;
+let splashWindow;
 
-// Create the main window
 function createWindow() {
+  // Splash screen window
+  splashWindow = new BrowserWindow({
+    width: 300,
+    height: 300,
+    frame: false,
+    alwaysOnTop: true,
+    transparent: true,
+    resizable: false,
+  });
+
+  splashWindow.loadURL(`file://${path.join(__dirname, "../public/splash.html")}`);
+
+  // Main window
   mainWindow = new BrowserWindow({
     width: 600,
     height: 600,
@@ -17,7 +30,6 @@ function createWindow() {
     resizable: false,
     transparent: true,
     backgroundColor: "#151515",
-    alwaysOnTop: true,
     webPreferences: {
       preload: `file://${__dirname}/preload.js`,
       nodeIntegration: true,
@@ -32,7 +44,11 @@ function createWindow() {
   mainWindow.loadURL(startURL);
 
   mainWindow.once("ready-to-show", () => {
-    mainWindow.setVisibleOnAllWorkspaces(false);
+    // Close splash and show main window
+    if (splashWindow) {
+      splashWindow.close();
+    }
+    mainWindow.show();
   });
 }
 

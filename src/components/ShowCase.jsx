@@ -10,7 +10,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
     const timeout = setTimeout(() => {
       setDatas(data);
       setOpacity(1);
-    }, 350);
+    }, 250);
     return () => clearTimeout(timeout);
   }, [data]);
 

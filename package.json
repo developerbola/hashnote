@@ -1,6 +1,5 @@
 {
   "name": "hashnote",
-  "productName": "Hashnote",
   "private": true,
   "type": "module",
   "version": "1.0.0",
@@ -9,7 +8,7 @@
   "main": "electron/main.js",
   "build": {
     "appId": "com.hashnote.mutawirr",
-    "productName": "HashNote",
+    "productName": "Hashnote",
     "icon": "public/icon.icns",
     "mac": {
       "target": "dmg"
