@@ -9,19 +9,18 @@ const SettingsMenu = ({
   username,
   setUsername,
 }) => {
-  const [fieldValues, setFieldValues] = useState({ username: "", token: "" });
+  const [fieldValues, setFieldValues] = useState({ username, token });
+
   const handleOnChange = (name, value) => {
-    setFieldValues((prev) => ({ [name]: value, ...prev }));
+    setFieldValues((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClose = () => {
     setActive(!active);
-    // Save username
     setUsername(fieldValues.username);
-    handleSaveToFile("username.txt", username);
-    // Save token
+    handleSaveToFile("username.txt", fieldValues.username);
     setToken(fieldValues.token);
-    handleSaveToFile("token.txt", token);
+    handleSaveToFile("token.txt", fieldValues.token);
   };
 
   return (
@@ -42,7 +41,7 @@ const SettingsMenu = ({
             type="text"
             className="settings-field"
             onChange={(e) => handleOnChange("username", e.target.value)}
-            defaultValue={username}
+            value={fieldValues.username}
           />
         </div>
         <div className="settings-item">
@@ -50,7 +49,7 @@ const SettingsMenu = ({
           <textarea
             className="settings-field"
             onChange={(e) => handleOnChange("token", e.target.value)}
-            defaultValue={token}
+            value={fieldValues.token}
           />
         </div>
       </div>

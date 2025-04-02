@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { handleCreateNewFile, handleDeleteFile } from "../utils/handlers";
 
 const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
@@ -40,7 +40,10 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
           <div
             key={idx}
             className="showcase-link"
-            onClick={() => setActiveFile(true)}
+            onClick={() => {
+              setActiveFile(true);
+              console.log(note);
+            }}
           >
             <img src="./svg_icons/hashtag.svg" height={13} width={13} />
             <div className="showcase-link-title">

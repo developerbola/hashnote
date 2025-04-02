@@ -203,6 +203,24 @@ const AboutPage = ({ isPageVisible }) => {
           </div>
         </div>
       </div>
+      <div className="privacy section">
+        <div className="title" style={{ gap: 10 }}>
+          <h1>Privacy</h1>
+          <img
+            src="./svg_icons/privacy.svg"
+            height={50}
+            width={30}
+            style={{ height: 30, width: 30, opacity: 0.9 }}
+          />
+        </div>
+        <div className="action-list">
+          <div className="action">
+            <div className="option">
+              We care about your privacy. Your all data saved in you local <samp>(user)/.hashnote/</samp>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
