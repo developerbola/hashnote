@@ -429,33 +429,34 @@ code span {
   content: "";
   position: relative;
   display: block;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   border: 1px solid #fff;
   background: #151515;
   border-radius: 4px;
+  transition: all 200ms ease;
 }
 
 .action .checkbox[type="checkbox"]:checked:before {
   border: none;
   background: #fff;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .action .checkbox[type="checkbox"]::after {
   content: "";
   position: relative;
   display: block;
-  left: 3px;
-  top: -12px;
-  width: 8px;
-  height: 4px;
+  left: 4px;
+  top: -13px;
+  height: 0.25rem;
+  width: 0.5rem;
   background: transparent;
   border: 2px solid #000;
-  border-top: none;
-  border-right: none;
+  border-width: 0 0 1.5px 1.5px;
   rotate: -45deg;
+  transition: all 200ms ease;
 }
 
 .settings-container {

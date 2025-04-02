@@ -164,7 +164,7 @@ const AboutPage = ({ isPageVisible }) => {
               <span>
                 {"**"}...{"**"}
               </span>{" "}
-              - <strong>Bold</strong>
+              - <strong style={{ fontWeight: "bold" }}>Bold</strong>
             </div>
             <div className="option">
               <span>
@@ -181,7 +181,7 @@ const AboutPage = ({ isPageVisible }) => {
             </div>
             <div className="option">
               <span>[x]</span> - Checked{" "}
-              <input type="checkbox" className="checkbox" checked />
+              <input type="checkbox" className="checkbox" defaultChecked />
             </div>
             <div className="option">
               <span>[ ]</span> - Unchecked{" "}
