@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { handleSaveToFile } from "../utils/handlers";
 
 const SettingsMenu = ({
   active,
@@ -8,51 +9,19 @@ const SettingsMenu = ({
   username,
   setUsername,
 }) => {
-  const [cToken, setCToken] = useState(token);
-  const [cUsername, setCUsername] = useState(username);
-
-  const saveToken = () => {
-    try {
-      const fs = window.require("fs");
-      const path = window.require("path");
-      const os = window.require("os");
-
-      const homeDir = os.homedir();
-      const appBaseDir = path.join(homeDir, ".hashnote");
-      const filePath = path.join(appBaseDir, "token.txt");
-
-      if (!fs.existsSync(appBaseDir)) {
-        fs.mkdirSync(appBaseDir, { recursive: true });
-      }
-
-      fs.writeFileSync(filePath, cToken, "utf-8");
-
-      console.log("Token saved successfully:", cToken);
-    } catch (e) {
-      console.error("Error saving token:", e);
-    }
+  const [fieldValues, setFieldValues] = useState({ username: "", token: "" });
+  const handleOnChange = (name, value) => {
+    setFieldValues((prev) => ({ [name]: value, ...prev }));
   };
 
-  const saveUsername = () => {
-    try {
-      const fs = window.require("fs");
-      const path = window.require("path");
-      const os = window.require("os");
-
-      const homeDir = os.homedir();
-      const appBaseDir = path.join(homeDir, ".hashnote");
-      const filePath = path.join(appBaseDir, "username.txt");
-
-      if (!fs.existsSync(appBaseDir)) {
-        fs.mkdirSync(appBaseDir, { recursive: true });
-      }
-
-      fs.writeFileSync(filePath, cUsername, "utf-8");
-
-      console.log("Username saved successfully:", cUsername);
-    } catch (e) {
-      console.error("Error saving username:", e);
-    }
+  const handleClose = () => {
+    setActive(!active);
+    // Save username
+    setUsername(fieldValues.username);
+    handleSaveToFile("username.txt", username);
+    // Save token
+    setToken(fieldValues.token);
+    handleSaveToFile("token.txt", token);
   };
 
   return (
@@ -62,20 +31,7 @@ const SettingsMenu = ({
     >
       <div className="titlebar">
         <h2>Settings</h2>
-        <button
-          className="close-btn"
-          onClick={() => {
-            setActive(!active);
-            if (username !== cUsername) {
-              saveUsername();
-              setUsername(cUsername);
-            }
-            if (token !== cToken) {
-              saveToken();
-              setToken(cToken);
-            }
-          }}
-        >
+        <button className="close-btn" onClick={handleClose}>
           <img src="./svg_icons/plus.svg" height={22} width={22} />
         </button>
       </div>
@@ -85,25 +41,24 @@ const SettingsMenu = ({
           <input
             type="text"
             className="settings-field"
-            onChange={(e) => setCUsername(e.target.value)}
-            value={cUsername}
+            onChange={(e) => handleOnChange("username", e.target.value)}
+            defaultValue={username}
           />
         </div>
         <div className="settings-item">
           <h4>Github Token</h4>
           <textarea
             className="settings-field"
-            onChange={(e) => setCToken(e.target.value)}
-            value={cToken}
+            onChange={(e) => handleOnChange("token", e.target.value)}
+            defaultValue={token}
           />
         </div>
       </div>
-      <div className="version" style={{ display: "flex", gap: 10 }}>
-        <a
-          href="https://github.com/developerbola/hashnote"
-        >
-          Code
-        </a>
+      <div
+        className="version"
+        style={{ display: "flex", alignItems: "center", gap: 10 }}
+      >
+        <a href="https://github.com/developerbola/hashnote">Code</a>
         <p>v1.0.0</p>
       </div>
     </div>

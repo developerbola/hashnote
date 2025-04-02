@@ -15,7 +15,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
 
   const handleWheel = (e) => {
     const now = Date.now();
-
     if (e.deltaX < -30 && now - lastTriggerTime > 500) {
       setActiveFile(false);
       lastTriggerTime = now;

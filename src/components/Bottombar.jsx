@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
 import AboutButton from "./AboutButton";
+import { readToken } from "../utils/readDataFromFile";
 
 const Bottombar = ({ setActiveFile, token, username }) => {
   const [activeFolder, setActiveFolder] = useState("Notes");
@@ -53,31 +54,9 @@ const Bottombar = ({ setActiveFile, token, username }) => {
     }
   };
 
-  const readTokenFromFile = () => {
-    try {
-      const fs = window.require("fs");
-      const path = window.require("path");
-      const os = window.require("os");
-
-      const homeDir = os.homedir();
-      const appBaseDir = path.join(homeDir, ".hashnote");
-      const filePath = path.join(appBaseDir, "token.txt");
-
-      if (!fs.existsSync(appBaseDir)) {
-        fs.mkdirSync(appBaseDir, { recursive: true });
-      }
-
-      if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, "");
-      }
-    } catch (e) {
-      console.error("Error:", e);
-    }
-  };
-
   useEffect(() => {
     loadFilesFromDisk();
-    readTokenFromFile();
+    readToken();
   }, []);
 
   useEffect(() => {
