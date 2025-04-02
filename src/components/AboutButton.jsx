@@ -100,6 +100,19 @@ const AboutPage = ({ isPageVisible }) => {
               </p>
             </div>
           </div>
+
+          <div className="action">
+            <div>
+              <h3>Double enter</h3>
+            </div>
+            <div className="option">
+              <p>
+                To remove list markers or checkboxes in the editor, simply press
+                Enter twice to skip these actions.
+              </p>
+            </div>
+          </div>
+
           <div className="action headings">
             <div>
               <h3>
