@@ -77,6 +77,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
           setEditorValue(e);
         }}
         markdown={editorValue}
+        spellCheck={false}
       />
     </div>
   );

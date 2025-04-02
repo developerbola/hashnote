@@ -58,7 +58,7 @@ const SettingsMenu = ({
   return (
     <div
       className="settings-container"
-      style={{ left: active ? "calc(100% - 415px)" : "100%" }}
+      style={{ right: active ? "10px" : "-100%" }}
     >
       <div className="titlebar">
         <h2>Settings</h2>
@@ -98,7 +98,12 @@ const SettingsMenu = ({
           />
         </div>
       </div>
-      <div className="version">
+      <div className="version" style={{ display: "flex", gap: 10 }}>
+        <a
+          href="https://github.com/developerbola/hashnote"
+        >
+          Code
+        </a>
         <p>v1.0.0</p>
       </div>
     </div>

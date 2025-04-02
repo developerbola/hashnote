@@ -221,11 +221,8 @@ blockquote {
   margin: 1px 0;
 }
 
-.mdx-editor code {
-  font-family: JetBrains;
-}
-
 code span {
+  font-family: JetBrains;
   border-radius: 4px;
   background: transparent !important;
   border: 1px solid #ffffff30;
@@ -434,7 +431,6 @@ code span {
   border: 1px solid #fff;
   background: #151515;
   border-radius: 4px;
-  transition: all 200ms ease;
 }
 
 .action .checkbox[type="checkbox"]:checked:before {
@@ -456,20 +452,19 @@ code span {
   border: 2px solid #000;
   border-width: 0 0 1.5px 1.5px;
   rotate: -45deg;
-  transition: all 200ms ease;
 }
 
 .settings-container {
   position: absolute;
-  top: 15px;
+  top: 10px;
   background: #11111170;
-  border: 1px solid #ffffff08;
-  height: 570px;
+  border: 1px solid #ffffff10;
+  height: 580px;
   width: 400px;
   padding: 20px 25px;
   border-radius: 10px;
   backdrop-filter: blur(20px);
-  transition: 400ms left ease;
+  transition: right 400ms ease;
   z-index: 10;
   font-family: Montserrat;
   font-weight: normal;

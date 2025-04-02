@@ -50,7 +50,7 @@ const AboutPage = ({ isPageVisible }) => {
         </div>
         <p>
           Hashnote - a minimal and powerful productivity app designed for
-          developers.
+          developers. Also non developers can use {":)"}
         </p>
         <p>
           It visualizes your daily GitHub activity with an interactive heatmap
@@ -186,6 +186,19 @@ const AboutPage = ({ isPageVisible }) => {
             <div className="option">
               <span>[ ]</span> - Unchecked{" "}
               <input type="checkbox" className="checkbox" />
+            </div>
+          </div>
+          <div className="action">
+            <div>
+              <h3>
+                Inline code <span>{"`...`"}</span>
+              </h3>
+            </div>
+            <div className="option">
+              <span style={{ fontFamily: "JetBrains" }}>
+                some inline code here
+              </span>{" "}
+              - `some inline code here`
             </div>
           </div>
         </div>
