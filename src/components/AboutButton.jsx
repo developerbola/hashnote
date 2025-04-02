@@ -46,7 +46,7 @@ const AboutPage = ({ isPageVisible }) => {
       <div className="start section">
         <div className="title">
           <h1>Hashnote</h1>
-          <img src="./icon.icns" height={50} width={50} />
+          <img src="./svg_icons/icon.svg" height={45} width={45} />
         </div>
         <p>
           Hashnote - a minimal and powerful productivity app designed for
@@ -76,6 +76,30 @@ const AboutPage = ({ isPageVisible }) => {
           />
         </div>
         <div className="actions-list">
+          <div className="action">
+            <div>
+              <h3>Dynamic back</h3>
+            </div>
+            <div className="option">
+              <p>
+                You can navigate back to the home screen by swiping left with
+                two fingers. This feature is available both here and in the
+                editor.
+              </p>
+            </div>
+            <div className="option">
+              <p>
+                Additionally, in the settings panel, your username and token are
+                automatically saved when you click the close button (×).
+              </p>
+            </div>
+            <div className="option">
+              <p>
+                These features are designed to keep the interface clean and
+                minimal.
+              </p>
+            </div>
+          </div>
           <div className="action headings">
             <div>
               <h3>
@@ -215,8 +239,35 @@ const AboutPage = ({ isPageVisible }) => {
         </div>
         <div className="action-list">
           <div className="action">
+            <div>
+              <h3> Data Storage & Security</h3>
+            </div>
             <div className="option">
-              We care about your privacy. Your all data saved in you local <samp>(user)/.hashnote/</samp>
+              <p>This app does not store any data on external servers.</p>
+              <p>
+                All user data, including your GitHub username, token, and notes,
+                is stored locally on your device in{" "}
+                <samp style={{ fontFamily: "JetBrains" }}>~/.hashnote/</samp>.
+              </p>
+              <p>
+                We do not collect, share, or transmit your data to any third
+                party.
+              </p>
+            </div>
+          </div>
+          <div className="action">
+            <div>
+              <h3> Access & Permissions</h3>
+            </div>
+            <div className="option">
+              <p>
+                The app only accesses local files required for storing your
+                settings and notes.
+              </p>
+              <p>
+                No internet connection is required, except for GitHub API
+                interactions if configured.
+              </p>
             </div>
           </div>
         </div>

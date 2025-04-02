@@ -345,12 +345,7 @@ code span {
   visibility: hidden;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
-}
-
-.about-page.visible {
-  opacity: 1;
-  transform: translateX(0);
-  visibility: visible;
+  scroll-behavior: smooth;
 }
 
 .about-page .section {
@@ -361,6 +356,12 @@ code span {
   padding: 30px;
   scroll-snap-align: start;
   overflow-y: auto;
+}
+
+.about-page.visible {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
 }
 
 .section .title {
@@ -420,6 +421,7 @@ code span {
 .action .checkbox {
   background: transparent;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .action .checkbox[type="checkbox"]::before {
@@ -454,7 +456,18 @@ code span {
   rotate: -45deg;
 }
 
+.privacy .action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
+.privacy .option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
 
 .settings-container {
   position: absolute;
