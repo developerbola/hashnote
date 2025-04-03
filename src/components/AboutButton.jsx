@@ -240,51 +240,6 @@ const AboutPage = ({ isPageVisible }) => {
           </div>
         </div>
       </div>
-      <div className="privacy section">
-        <div className="title" style={{ gap: 10 }}>
-          <h1>Privacy</h1>
-          <img
-            src="./svg_icons/privacy.svg"
-            height={50}
-            width={30}
-            style={{ height: 30, width: 30, opacity: 0.9 }}
-          />
-        </div>
-        <div className="action-list">
-          <div className="action">
-            <div>
-              <h3> Data Storage & Security</h3>
-            </div>
-            <div className="option">
-              <p>This app does not store any data on external servers.</p>
-              <p>
-                All user data, including your GitHub username, token, and notes,
-                is stored locally on your device in{" "}
-                <samp style={{ fontFamily: "JetBrains" }}>~/.hashnote/</samp>.
-              </p>
-              <p>
-                We do not collect, share, or transmit your data to any third
-                party.
-              </p>
-            </div>
-          </div>
-          <div className="action">
-            <div>
-              <h3> Access & Permissions</h3>
-            </div>
-            <div className="option">
-              <p>
-                The app only accesses local files required for storing your
-                settings and notes.
-              </p>
-              <p>
-                No internet connection is required, except for GitHub API
-                interactions if configured.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
