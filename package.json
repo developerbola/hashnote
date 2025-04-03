@@ -16,7 +16,14 @@
     "files": [
       "dist/",
       "electron/**/*",
-      "public/**/**"
+      "public/**/**",
+      {
+        "from": "../dist",
+        "filter": [
+          "**/*"
+        ],
+        "to": "src"
+      }
     ],
     "directories": {
       "buildResources": "public",
@@ -35,13 +42,12 @@
     "build-electron": "electron-builder",
     "package": "npm run build-renderer && npm run build-electron"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@mdxeditor/editor": "^3.29.1",
     "marked": "^15.0.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
+    "react-dom": "^19.0.0",
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

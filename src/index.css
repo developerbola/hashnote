@@ -375,6 +375,19 @@ code span {
   object-fit: cover;
 }
 
+.privacy .action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.privacy .option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
 .actions-list {
   display: flex;
   flex-direction: column;
