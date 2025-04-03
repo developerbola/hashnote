@@ -22,7 +22,6 @@ export const handleSaveToFile = (filePath, content) => {
       return "\n" + "&#x20;\n".repeat(spaceCount);
     });
 
-
     if (!fs.existsSync(appBaseDir)) {
       fs.mkdirSync(appBaseDir, { recursive: true });
     }
@@ -42,7 +41,7 @@ export const handleCreateNewFile = (datas, loadFilesFromDisk) => {
     const name = datas?.title?.split("s")[0];
     const filePath = path.join(folderPath, `New-${name}.txt`);
     if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, `New ${name}`);
+      fs.writeFileSync(filePath, `# New ${name}`);
     } else {
       console.warn("File already exist");
       return "";
@@ -80,4 +79,27 @@ export const handleDeleteFile = (note, index, e, datas, loadFilesFromDisk) => {
   } catch (error) {
     console.error("Error deleting file:", error);
   }
+};
+
+export const handleRenameFile = (filePath, newFileName, loadFilesFromDisk) => {
+  return new Promise((resolve, reject) => {
+    const fs = window.require("fs");
+    const path = window.require("path");
+
+    if (!fs.existsSync(filePath)) {
+      return reject(new Error("File does not exist"));
+    }
+
+    const newFilePath = path.join(path.dirname(filePath), newFileName);
+
+    fs.rename(filePath, newFilePath, (err) => {
+      if (err) {
+        console.error("Error renaming file:", err);
+        reject(err);
+      } else {
+        loadFilesFromDisk();
+        resolve(newFilePath);
+      }
+    });
+  });
 };

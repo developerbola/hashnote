@@ -3,7 +3,7 @@ import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
 import AboutButton from "./AboutButton";
 import { readToken } from "../utils/readDataFromFile";
-import { useFolders } from "../context/FoldersContext";
+import { useFolders } from "../context/FoldersProvider";
 
 const Bottombar = ({ setActiveFile }) => {
   const [activeFolder, setActiveFolder] = useState("Notes");

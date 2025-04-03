@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { months } from "../utils/dates";
 import "../github-activity.css";
-import { useGithub } from "../context/GithubContext";
+import { useGithub } from "../context/GithubProvider";
 // Fully styled GitHubActivity component
 const GitHubActivity = () => {
   const [contributionData, setContributionData] = useState(null);

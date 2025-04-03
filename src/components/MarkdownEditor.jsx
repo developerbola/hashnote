@@ -10,26 +10,33 @@ import {
 import "@mdxeditor/editor/style.css";
 import { useEffect, useRef } from "react";
 import { useFunctions } from "../context/FunctionsProvider";
-import { handleSaveToFile } from "../utils/handlers";
+import { useFolders } from "../context/FoldersProvider";
+import { handleRenameFile, handleSaveToFile } from "../utils/handlers";
 
 const MarkdownEditor = ({ editorRef, setActiveFile }) => {
   const { editorValue, setEditorValue, filePath } = useFunctions();
+  const { loadFilesFromDisk } = useFolders();
   const mdxEditorRef = useRef(null);
   const filePathRef = useRef(filePath);
-  const editorValueRef = useRef(editorValue); // Ref for editorValue
+  const editorValueRef = useRef(editorValue);
+  const lastTriggerTimeRef = useRef(0);
 
   useEffect(() => {
     filePathRef.current = filePath;
-    editorValueRef.current = editorValue; // Update editorValueRef when editorValue changes
-  }, [filePath, editorValue]);
+  }, [filePath]);
 
-  let lastTriggerTime = 0;
+  useEffect(() => {
+    editorValueRef.current = editorValue;
+  }, [editorValue]);
 
   const exitAndSave = (e) => {
     const now = Date.now();
-    if (e.deltaX < -20 && now - lastTriggerTime > 200) {
+
+    if (e.deltaX < -20 && now - lastTriggerTimeRef.current > 500) {
       setActiveFile(false);
-      lastTriggerTime = now;
+      lastTriggerTimeRef.current = now;
+    } else {
+      return;
     }
 
     if (!filePathRef.current || filePathRef.current.trim() === "") {
@@ -38,12 +45,25 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     }
 
     const content = editorValueRef.current;
+    const nameOfFileBasedTitleMatch = content.match(/^# (.+)/m);
+
+    if (!nameOfFileBasedTitleMatch) {
+      console.error("Error: No title found in the file.");
+      return;
+    }
+
+    const nameOfFileBasedTitle = nameOfFileBasedTitleMatch[1].trim();
+    const currentFileName = filePathRef.current.split("/").pop().split(".")[0]; // Get the actual filename
+
+    // ✅ Ensure new file name includes an extension (".txt")
+    const newFileName = nameOfFileBasedTitle.replace(/\s+/g, "-") + ".txt";
+
+    if (nameOfFileBasedTitle !== currentFileName) {
+      handleRenameFile(filePathRef.current, newFileName, loadFilesFromDisk);
+    }
+
     handleSaveToFile(filePathRef.current, content);
   };
-
-  useEffect(() => {
-    console.log(editorValue);
-  }, [editorValue]);
 
   useEffect(() => {
     const wrapper = document.getElementById("mdx-wrapper");

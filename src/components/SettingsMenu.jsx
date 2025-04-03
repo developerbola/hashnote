@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { handleSaveToFile } from "../utils/handlers";
-import { useGithub } from "../context/GithubContext";
+import { useGithub } from "../context/GithubProvider";
 
 const SettingsMenu = ({ active, setActive }) => {
   const { username, setUsername, token, setToken } = useGithub();

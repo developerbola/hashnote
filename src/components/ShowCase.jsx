@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { handleCreateNewFile, handleDeleteFile } from "../utils/handlers";
-import { useFolders } from "../context/FoldersContext";
+import { useFolders } from "../context/FoldersProvider";
 import { useFunctions } from "../context/FunctionsProvider";
 
 const ShowCase = ({ data, setActiveFile }) => {
   const { loadFilesFromDisk } = useFolders();
   const [datas, setDatas] = useState([]);
   const [opacity, setOpacity] = useState(1);
-  const { setFilePath, filePath } = useFunctions();
+  const { setFilePath } = useFunctions();
   useEffect(() => {
     setOpacity(0);
     const timeout = setTimeout(() => {

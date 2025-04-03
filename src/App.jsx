@@ -3,8 +3,8 @@ import Topbar from "./components/Topbar";
 import Bottombar from "./components/Bottombar";
 import MarkdownEditor from "./components/MarkdownEditor";
 import { FunctionsProvider } from "./context/FunctionsProvider";
-import { FoldersProvider } from "./context/FoldersContext";
-import { GithubProvider } from "./context/GithubContext";
+import { FoldersProvider } from "./context/FoldersProvider";
+import { GithubProvider } from "./context/GithubProvider";
 
 function App() {
   const [activeFile, setActiveFile] = useState(false);
