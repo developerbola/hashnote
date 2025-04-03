@@ -2,7 +2,7 @@
   "name": "hashnote",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "description": "A simple markdown and note-taking app",
   "author": "Mutawirr",
   "main": "electron/main.js",
