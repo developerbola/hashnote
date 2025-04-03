@@ -17,8 +17,11 @@ export const handleSaveToFile = (filePath, content) => {
     }
 
     content = content.replace(/\n{2,}/g, (match) => {
-      return "\n" + Array(match.length).fill("&#x20;").join("\n");
+      const newlineCount = match.length;
+      const spaceCount = Math.floor((newlineCount - 1) / 2);
+      return "\n" + "&#x20;\n".repeat(spaceCount);
     });
+
 
     if (!fs.existsSync(appBaseDir)) {
       fs.mkdirSync(appBaseDir, { recursive: true });
