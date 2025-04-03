@@ -1,30 +1,36 @@
-export const handleSaveToFile = (fileName, content) => {
-  try {
-    const fs = window.require("fs");
-    const path = window.require("path");
-    const os = window.require("os");
+const fs = window.require("fs");
+const path = window.require("path");
+const os = window.require("os");
 
-    const homeDir = os.homedir();
-    const appBaseDir = path.join(homeDir, ".hashnote");
-    const filePath = path.join(appBaseDir, fileName);
+const homeDir = os.homedir(); // ~/
+const appBaseDir = path.join(homeDir, ".hashnote"); // ~/.hashnote
+
+export const handleSaveToFile = (filePath, content) => {
+  try {
+    if (!filePath) {
+      console.error("Error: filePath is empty or undefined.");
+      return;
+    }
+
+    if (!content) {
+      console.warn("Error: content is empty.");
+    }
+
+    content = content.replace(/\n{2,}/g, (match) => {
+      return "\n" + Array(match.length).fill("&#x20;").join("\n");
+    });
 
     if (!fs.existsSync(appBaseDir)) {
       fs.mkdirSync(appBaseDir, { recursive: true });
     }
     fs.writeFileSync(filePath, content, "utf-8");
   } catch (e) {
-    console.error(`Error saving ${fileName}:`, e);
+    console.error(`Error saving ${filePath}:`, e);
   }
 };
 
 export const handleCreateNewFile = (datas, loadFilesFromDisk) => {
   try {
-    const fs = window.require("fs");
-    const path = window.require("path");
-    const os = window.require("os");
-
-    const homeDir = os.homedir();
-    const appBaseDir = path.join(homeDir, ".hashnote");
     const folderPath = path.join(appBaseDir, datas.title.toLowerCase());
 
     if (!fs.existsSync(folderPath)) {
@@ -32,7 +38,12 @@ export const handleCreateNewFile = (datas, loadFilesFromDisk) => {
     }
     const name = datas?.title?.split("s")[0];
     const filePath = path.join(folderPath, `New-${name}.txt`);
-    fs.writeFileSync(filePath, `New ${name}`);
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, `New ${name}`);
+    } else {
+      console.warn("File already exist");
+      return "";
+    }
 
     loadFilesFromDisk();
     return filePath;
@@ -44,14 +55,8 @@ export const handleCreateNewFile = (datas, loadFilesFromDisk) => {
 export const handleDeleteFile = (note, index, e, datas, loadFilesFromDisk) => {
   e.stopPropagation();
   try {
-    const fs = window.require("fs");
-    const path = window.require("path");
-    const os = window.require("os");
-
     let filePath = note.path;
     if (!filePath) {
-      const homeDir = os.homedir();
-      const appBaseDir = path.join(homeDir, ".hashnote");
       const folderPath = path.join(appBaseDir, datas.title.toLowerCase());
       filePath = path.join(folderPath, note.title);
     }

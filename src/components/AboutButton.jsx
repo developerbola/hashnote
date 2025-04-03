@@ -5,9 +5,8 @@ const AboutButton = () => {
 
   let lastTriggerTime = 0;
 
-  const handleWheel = (e) => {
+  const exitAndSave = (e) => {
     const now = Date.now();
-
     if (e.deltaX < -20 && now - lastTriggerTime > 200) {
       setIsPageVisible(false);
       lastTriggerTime = now;
@@ -17,8 +16,8 @@ const AboutButton = () => {
   useEffect(() => {
     const page = document.getElementById("about-page");
     if (!page) return;
-    page.addEventListener("wheel", handleWheel);
-    return () => page.removeEventListener("wheel", handleWheel);
+    page.addEventListener("wheel", exitAndSave);
+    return () => page.removeEventListener("wheel", exitAndSave);
   }, []);
   return (
     <>

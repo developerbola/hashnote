@@ -16,14 +16,7 @@
     "files": [
       "dist/",
       "electron/**/*",
-      "public/**/**",
-      {
-        "from": "../dist",
-        "filter": [
-          "**/*"
-        ],
-        "to": "src"
-      }
+      "public/**/**"
     ],
     "directories": {
       "buildResources": "public",

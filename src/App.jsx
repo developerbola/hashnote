@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import Topbar from "./components/Topbar";
 import Bottombar from "./components/Bottombar";
 import MarkdownEditor from "./components/MarkdownEditor";
-import { readToken, readUsername } from "./utils/readDataFromFile";
+import { FunctionsProvider } from "./context/FunctionsProvider";
+import { FoldersProvider } from "./context/FoldersContext";
+import { GithubProvider } from "./context/GithubContext";
 
 function App() {
   const [activeFile, setActiveFile] = useState(false);
-  const [token, setToken] = useState(readToken());
-  const [username, setUsername] = useState(readUsername());
 
   const bottomRef = useRef(null);
   const editorRef = useRef(null);
@@ -33,27 +33,26 @@ function App() {
     }
   }, [activeFile]);
 
-
   return (
-    <>
-      <div className="drag-place"></div>
-      <div className="container">
-        <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
-          <Topbar
-            token={token}
-            setToken={setToken}
-            username={username}
-            setUsername={setUsername}
-          />
-          <Bottombar
-            setActiveFile={setActiveFile}
-            token={token}
-            username={username}
-          />
-        </div>
-        <MarkdownEditor editorRef={editorRef} setActiveFile={setActiveFile} />
-      </div>
-    </>
+    <FunctionsProvider>
+      <FoldersProvider>
+        <GithubProvider>
+          <div className="drag-place"></div>
+          <div className="container">
+            <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
+              <Topbar />
+              <Bottombar
+                setActiveFile={setActiveFile}
+              />
+            </div>
+            <MarkdownEditor
+              editorRef={editorRef}
+              setActiveFile={setActiveFile}
+            />
+          </div>
+        </GithubProvider>
+      </FoldersProvider>
+    </FunctionsProvider>
   );
 }
 

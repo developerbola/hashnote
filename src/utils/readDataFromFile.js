@@ -47,16 +47,19 @@ export const readUsername = () => {
   }
 };
 
-export const readFile = (filePath) => {
-  try {
-    if (fs.existsSync(filePath)) {
-      const fileValue = fs.readFileSync(filePath, "utf-8");
-      return fileValue;
-    } else {
-      console.warn("File does not exist.");
-      return "";
+export const readFile = async (filePath) => {
+  return new Promise((resolve, reject) => {
+    try {
+      if (fs.existsSync(filePath)) {
+        const fileValue = fs.readFileSync(filePath, "utf-8");
+        resolve(fileValue);
+      } else {
+        console.warn("File does not exist.");
+        resolve("");
+      }
+    } catch (e) {
+      console.error("Error reading file:", e);
+      reject(e);
     }
-  } catch (e) {
-    console.error("Error reading file:", e);
-  }
+  });
 };

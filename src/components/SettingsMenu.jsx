@@ -1,26 +1,30 @@
 import { useState } from "react";
 import { handleSaveToFile } from "../utils/handlers";
+import { useGithub } from "../context/GithubContext";
 
-const SettingsMenu = ({
-  active,
-  setActive,
-  token,
-  setToken,
-  username,
-  setUsername,
-}) => {
+const SettingsMenu = ({ active, setActive }) => {
+  const { username, setUsername, token, setToken } = useGithub();
   const [fieldValues, setFieldValues] = useState({ username, token });
-
   const handleOnChange = (name, value) => {
     setFieldValues((prev) => ({ ...prev, [name]: value }));
   };
 
+  const path = window.require("path");
+  const os = window.require("os");
+
+  const homeDir = os.homedir(); // ~/
+  const appBaseDir = path.join(homeDir, ".hashnote"); // ~/.hashnote
+
   const handleClose = () => {
     setActive(!active);
+    // Username saving
+    const usernamePath = path.join(appBaseDir, "username.txt");
     setUsername(fieldValues.username);
-    handleSaveToFile("username.txt", fieldValues.username);
+    handleSaveToFile(usernamePath, fieldValues.username);
+    // Token saving
+    const tokenPath = path.join(appBaseDir, "token.txt");
     setToken(fieldValues.token);
-    handleSaveToFile("token.txt", fieldValues.token);
+    handleSaveToFile(tokenPath, fieldValues.token);
   };
 
   return (

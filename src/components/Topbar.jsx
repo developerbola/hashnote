@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { date } from "../utils/dates";
 import SettingsMenu from "./SettingsMenu";
-const Topbar = ({ setToken, token, username, setUsername }) => {
+const Topbar = () => {
   const [active, setActive] = useState(false);
   const addZero = (number) => {
     return number < 10 ? "0" + number : number;
@@ -19,14 +19,7 @@ const Topbar = ({ setToken, token, username, setUsername }) => {
         <button className="settings-button" onClick={() => setActive(!active)}>
           <img src="./svg_icons/settings.svg" />
         </button>
-        <SettingsMenu
-          active={active}
-          setActive={setActive}
-          token={token}
-          setToken={setToken}
-          username={username}
-          setUsername={setUsername}
-        />
+        <SettingsMenu active={active} setActive={setActive} />
       </div>
     </div>
   );

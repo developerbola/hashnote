@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { handleCreateNewFile, handleDeleteFile } from "../utils/handlers";
+import { useFolders } from "../context/FoldersContext";
+import { useFunctions } from "../context/FunctionsProvider";
 
-const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
+const ShowCase = ({ data, setActiveFile }) => {
+  const { loadFilesFromDisk } = useFolders();
   const [datas, setDatas] = useState([]);
   const [opacity, setOpacity] = useState(1);
-
+  const { setFilePath, filePath } = useFunctions();
   useEffect(() => {
     setOpacity(0);
     const timeout = setTimeout(() => {
@@ -42,7 +45,7 @@ const ShowCase = ({ data, setActiveFile, loadFilesFromDisk }) => {
             className="showcase-link"
             onClick={() => {
               setActiveFile(true);
-              console.log(note);
+              setFilePath(note.path);
             }}
           >
             <img src="./svg_icons/hashtag.svg" height={13} width={13} />

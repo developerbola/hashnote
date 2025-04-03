@@ -3,57 +3,11 @@ import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
 import AboutButton from "./AboutButton";
 import { readToken } from "../utils/readDataFromFile";
+import { useFolders } from "../context/FoldersContext";
 
-const Bottombar = ({ setActiveFile, token, username }) => {
+const Bottombar = ({ setActiveFile }) => {
   const [activeFolder, setActiveFolder] = useState("Notes");
-  const [folders, setFolders] = useState({
-    Notes: {
-      title: "Notes",
-      icon: "./svg_icons/notes.svg",
-      data: [],
-    },
-    Habits: {
-      title: "Habits",
-      icon: "./svg_icons/habits.svg",
-      data: [],
-    },
-    Codes: {
-      title: "Codes",
-      icon: "./svg_icons/codes.svg",
-      data: [],
-    },
-  });
-
-  const loadFilesFromDisk = () => {
-    try {
-      const fs = window.require("fs");
-      const path = window.require("path");
-      const os = window.require("os");
-
-      const homeDir = os.homedir();
-      const appBaseDir = path.join(homeDir, ".hashnote");
-      const updatedFolders = { ...folders };
-
-      Object.keys(updatedFolders).forEach((folderKey) => {
-        const directory = path.join(appBaseDir, folderKey.toLowerCase());
-
-        if (!fs.existsSync(directory)) {
-          fs.mkdirSync(directory, { recursive: true });
-        }
-
-        const files = fs.readdirSync(directory);
-        updatedFolders[folderKey].data = files.map((fileName) => ({
-          title: fileName.split(".")[0].split("-").join(" "),
-          path: path.join(directory, fileName),
-        }));
-      });
-
-      setFolders(updatedFolders);
-    } catch (error) {
-      console.error("Error loading files:", error);
-    }
-  };
-
+  const { folders, loadFilesFromDisk } = useFolders();
   useEffect(() => {
     loadFilesFromDisk();
     readToken();
@@ -65,12 +19,11 @@ const Bottombar = ({ setActiveFile, token, username }) => {
 
   return (
     <div className={"bottom-bar"}>
-      <GitHubActivity username={username} token={token} />
+      <GitHubActivity  />
       {/* Show active folder data */}
       <ShowCase
         data={folders[activeFolder]}
         setActiveFile={setActiveFile}
-        loadFilesFromDisk={loadFilesFromDisk}
       />
 
       <div className="footbar">

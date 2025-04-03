@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { months } from "../utils/dates";
 import "../github-activity.css";
+import { useGithub } from "../context/GithubContext";
 // Fully styled GitHubActivity component
-const GitHubActivity = ({
-  username,
-  year = new Date().getFullYear(),
-  token,
-}) => {
+const GitHubActivity = () => {
   const [contributionData, setContributionData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { username, token } = useGithub();
+  const year = new Date().getFullYear();
   // Container ref for positioning
   const calendarRef = useRef(null);
 
@@ -33,10 +31,8 @@ const GitHubActivity = ({
         setContributionData(generateSampleData());
         return;
       }
-
       setLoading(true);
       setError(null);
-
       try {
         // GitHub GraphQL API query to get contribution data
         const query = `
