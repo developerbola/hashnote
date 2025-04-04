@@ -13,14 +13,14 @@ const ShowCase = ({ data, setActiveFile }) => {
     const timeout = setTimeout(() => {
       setDatas(data);
       setOpacity(1);
-    }, 250);
+    }, 150);
     return () => clearTimeout(timeout);
   }, [data]);
 
   return (
     <div
       style={{
-        transition: "opacity 150ms ease-in-out",
+        transition: "opacity 100ms ease-in-out",
         opacity: opacity,
       }}
     >

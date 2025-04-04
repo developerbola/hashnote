@@ -27,6 +27,9 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
 
   useEffect(() => {
     editorValueRef.current = editorValue;
+    if (mdxEditorRef.current && mdxEditorRef.current.setMarkdown) {
+      mdxEditorRef.current.setMarkdown(editorValue);
+    }
   }, [editorValue]);
 
   const exitAndSave = (e) => {
@@ -55,7 +58,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     const nameOfFileBasedTitle = nameOfFileBasedTitleMatch[1].trim();
     const currentFileName = filePathRef.current.split("/").pop().split(".")[0]; // Get the actual filename
 
-    // ✅ Ensure new file name includes an extension (".txt")
     const newFileName = nameOfFileBasedTitle.replace(/\s+/g, "-") + ".txt";
 
     if (nameOfFileBasedTitle !== currentFileName) {
@@ -71,42 +73,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     wrapper.addEventListener("wheel", exitAndSave);
     return () => wrapper.removeEventListener("wheel", exitAndSave);
   }, []);
-
-  useEffect(() => {
-    document.querySelectorAll("blockquote span").forEach((el) => {
-      if (el.innerHTML.includes("Warning:")) {
-        const blockquote = el.closest("blockquote");
-        if (blockquote) {
-          blockquote.style.borderColor = "#ffee00";
-          blockquote.style.background = "#ffee0020";
-        }
-      }
-      if (el.innerHTML.includes("Danger:")) {
-        const blockquote = el.closest("blockquote");
-        if (blockquote) {
-          blockquote.style.borderColor = "#ff0059";
-          blockquote.style.background = "#ff005920";
-        }
-      }
-      if (el.innerHTML.includes("Success:")) {
-        const blockquote = el.closest("blockquote");
-        if (blockquote) {
-          blockquote.style.borderColor = "#00ff3c";
-          blockquote.style.background = "#00ff3c20";
-        }
-      }
-      if (el.innerHTML.includes("Info:")) {
-        const blockquote = el.closest("blockquote");
-        if (blockquote) {
-          blockquote.style.borderColor = "#00d8ff";
-          blockquote.style.background = "#00d8ff20";
-        }
-      }
-    });
-    if (mdxEditorRef.current && mdxEditorRef.current.setMarkdown) {
-      mdxEditorRef.current.setMarkdown(editorValue);
-    }
-  }, [editorValue]);
 
   const handleEditorChange = (newValue) => {
     if (newValue !== editorValue) {

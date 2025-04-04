@@ -157,27 +157,7 @@ const AboutPage = ({ isPageVisible }) => {
             </div>
             <div className="option">
               <blockquote style={{ width: "100%" }}>
-                <span>{">"} ...</span> - Basic
-              </blockquote>
-            </div>
-            <div className="option">
-              <blockquote style={{ width: "100%" }}>
-                <span>{">"} Success: ...</span> - Success Message
-              </blockquote>
-            </div>
-            <div className="option">
-              <blockquote style={{ width: "100%" }}>
-                <span>{">"} Info: ...</span> - Informational Message
-              </blockquote>
-            </div>
-            <div className="option">
-              <blockquote style={{ width: "100%" }}>
-                <span>{">"} Warning: ...</span> - Caution / Warning Message
-              </blockquote>
-            </div>
-            <div className="option">
-              <blockquote style={{ width: "100%" }}>
-                <span>{">"} Danger: ...</span> - Error / Critical Issue
+                <span>{">"} ...</span> - Block quote
               </blockquote>
             </div>
           </div>

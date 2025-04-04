@@ -48,6 +48,7 @@ function App() {
             <MarkdownEditor
               editorRef={editorRef}
               setActiveFile={setActiveFile}
+              activeFile={activeFile}
             />
           </div>
         </GithubProvider>
