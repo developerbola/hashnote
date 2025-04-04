@@ -45,7 +45,10 @@ const ShowCase = ({ data, setActiveFile }) => {
             className="showcase-link"
             onClick={() => {
               setActiveFile(true);
-              setFilePath(note.path);
+              setFilePath("");
+              setTimeout(() => {
+                setFilePath(note.path);
+              }, 0);
             }}
           >
             <img src="./svg_icons/hashtag.svg" height={13} width={13} />
@@ -56,9 +59,10 @@ const ShowCase = ({ data, setActiveFile }) => {
                 style={{ filter: "invert(1)", opacity: 0.2 }}
                 height={16}
                 width={16}
-                onClick={(e) =>
-                  handleDeleteFile(note, idx, e, datas, loadFilesFromDisk)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteFile(note, idx, e, datas, loadFilesFromDisk);
+                }}
               />
             </div>
           </div>

@@ -23,6 +23,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
 
   useEffect(() => {
     filePathRef.current = filePath;
+    console.log(filePath);
   }, [filePath]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     }
   }, [editorValue]);
 
-  const exitAndSave = (e) => {
+  const exitAndSave = async (e) => {
     const now = Date.now();
 
     if (e.deltaX < -20 && now - lastTriggerTimeRef.current > 500) {
@@ -48,22 +49,32 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     }
 
     const content = editorValueRef.current;
-    const nameOfFileBasedTitleMatch = content.match(/^# (.+)/m);
+    const titleMatch = content.match(/^# (.+)/m);
 
-    if (!nameOfFileBasedTitleMatch) {
+    if (!titleMatch) {
       console.error("Error: No title found in the file.");
       return;
     }
 
-    const nameOfFileBasedTitle = nameOfFileBasedTitleMatch[1].trim();
-    const currentFileName = filePathRef.current.split("/").pop().split(".")[0]; // Get the actual filename
+    const title = titleMatch[1].trim();
+    const currentFileName = filePathRef.current.split("/").pop().split(".")[0];
+    const newFileName = title.replace(/\s+/g, "-") + ".md";
 
-    const newFileName = nameOfFileBasedTitle.replace(/\s+/g, "-") + ".txt";
-
-    if (nameOfFileBasedTitle !== currentFileName) {
-      handleRenameFile(filePathRef.current, newFileName, loadFilesFromDisk);
+    if (title !== currentFileName) {
+      try {
+        const newFilePath = await handleRenameFile(
+          filePathRef.current,
+          newFileName,
+          loadFilesFromDisk
+        );
+        filePathRef.current = newFilePath;
+      } catch (err) {
+        console.error("Rename failed:", err);
+        return;
+      }
     }
 
+    // Now save to the new file path
     handleSaveToFile(filePathRef.current, content);
   };
 

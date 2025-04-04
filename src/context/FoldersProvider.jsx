@@ -21,16 +21,16 @@ export const FoldersProvider = ({ children }) => {
   });
 
   const loadFilesFromDisk = () => {
-    try {
+    setFolders((prev) => {
       const fs = window.require("fs");
       const path = window.require("path");
       const os = window.require("os");
 
       const homeDir = os.homedir();
       const appBaseDir = path.join(homeDir, ".hashnote");
-      const updatedFolders = { ...folders };
+      const updated = { ...prev };
 
-      Object.keys(updatedFolders).forEach((folderKey) => {
+      Object.keys(updated).forEach((folderKey) => {
         const directory = path.join(appBaseDir, folderKey.toLowerCase());
 
         if (!fs.existsSync(directory)) {
@@ -38,16 +38,15 @@ export const FoldersProvider = ({ children }) => {
         }
 
         const files = fs.readdirSync(directory);
-        updatedFolders[folderKey].data = files.map((fileName) => ({
+
+        updated[folderKey].data = files.map((fileName) => ({
           title: fileName.split(".")[0].split("-").join(" "),
           path: path.join(directory, fileName),
         }));
       });
 
-      setFolders(updatedFolders);
-    } catch (error) {
-      console.error("Error loading files:", error);
-    }
+      return updated;
+    });
   };
 
   return (

@@ -39,7 +39,8 @@ export const handleCreateNewFile = (datas, loadFilesFromDisk) => {
       fs.mkdirSync(folderPath, { recursive: true });
     }
     const name = datas?.title?.split("s")[0];
-    const filePath = path.join(folderPath, `New-${name}.txt`);
+    const filePath = path.join(folderPath, `New-${name}.md`);
+
     if (!fs.existsSync(filePath)) {
       fs.writeFileSync(filePath, `# New ${name}`);
     } else {
@@ -90,16 +91,24 @@ export const handleRenameFile = (filePath, newFileName, loadFilesFromDisk) => {
       return reject(new Error("File does not exist"));
     }
 
-    const newFilePath = path.join(path.dirname(filePath), newFileName);
+    const targetDir = path.dirname(filePath);
+    const newFilePath = path.join(targetDir, newFileName);
 
-    fs.rename(filePath, newFilePath, (err) => {
-      if (err) {
-        console.error("Error renaming file:", err);
-        reject(err);
-      } else {
-        loadFilesFromDisk();
-        resolve(newFilePath);
-      }
-    });
+    if (fs.existsSync(newFilePath) && fs.lstatSync(newFilePath).isDirectory()) {
+      return reject(new Error("Cannot rename to a directory"));
+    }
+
+    try {
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      fs.writeFileSync(newFilePath, fileContent, "utf-8");
+
+      fs.unlinkSync(filePath);
+
+      loadFilesFromDisk();
+      resolve(newFilePath);
+    } catch (err) {
+      console.error("Error during file rename (copy-delete):", err);
+      reject(err);
+    }
   });
 };
