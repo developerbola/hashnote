@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { handleSaveToFile } from "../utils/handlers";
 import { useGithub } from "../context/GithubProvider";
+const shell = window.require("electron").shell;
 
 const SettingsMenu = ({ active, setActive }) => {
   const { username, setUsername, token, setToken } = useGithub();
@@ -61,7 +62,15 @@ const SettingsMenu = ({ active, setActive }) => {
         className="version"
         style={{ display: "flex", alignItems: "center", gap: 10 }}
       >
-        <a href="https://github.com/developerbola/hashnote">Code</a>
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            shell.openExternal("https://github.com/developerbola/hashnote");
+          }}
+          style={{ textDecoration: "underline", cursor: "pointer" }}
+        >
+          Code
+        </a>
         <p>v1.0.0</p>
       </div>
     </div>
