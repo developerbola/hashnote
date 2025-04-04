@@ -111,6 +111,18 @@ const AboutPage = ({ isPageVisible }) => {
               </p>
             </div>
           </div>
+          <div className="action" style={{ marginBottom: 10 }}>
+            <div>
+              <h3>File Name as Title</h3>
+            </div>
+            <div className="option">
+              <p>
+                Rename your file by updating its title inside{" "}
+                <span># My hash notes</span>. The new title will be applied as
+                the file name when you exit.
+              </p>
+            </div>
+          </div>
 
           <div className="action headings">
             <div>

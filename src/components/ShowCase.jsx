@@ -27,7 +27,7 @@ const ShowCase = ({ data, setActiveFile }) => {
       <div className="showcase-header">
         <div className="showcase-title">
           <h3 className="title">{datas.title}</h3>
-          <img src={datas.icon} height={20} width={20} />
+          {datas.title && <img src={datas.icon} height={20} width={20} />}
         </div>
         <div>
           <button
