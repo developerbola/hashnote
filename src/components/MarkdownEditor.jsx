@@ -23,7 +23,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
 
   useEffect(() => {
     filePathRef.current = filePath;
-    console.log(filePath);
   }, [filePath]);
 
   useEffect(() => {

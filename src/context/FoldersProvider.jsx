@@ -39,10 +39,21 @@ export const FoldersProvider = ({ children }) => {
 
         const files = fs.readdirSync(directory);
 
-        updated[folderKey].data = files.map((fileName) => ({
-          title: fileName.split(".")[0].split("-").join(" "),
-          path: path.join(directory, fileName),
-        }));
+        const filesWithStats = files.map((fileName) => {
+          const fullPath = path.join(directory, fileName);
+          const stats = fs.statSync(fullPath); // get file metadata
+
+          return {
+            title: fileName.split(".")[0].split("-").join(" "),
+            path: fullPath,
+            createdAt: stats.birthtime, // or stats.ctime
+          };
+        });
+
+        // Sort newest first
+        filesWithStats.sort((a, b) => b.createdAt - a.createdAt);
+
+        updated[folderKey].data = filesWithStats;
       });
 
       return updated;

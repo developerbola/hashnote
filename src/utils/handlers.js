@@ -94,20 +94,12 @@ export const handleRenameFile = (filePath, newFileName, loadFilesFromDisk) => {
     const targetDir = path.dirname(filePath);
     const newFilePath = path.join(targetDir, newFileName);
 
-    if (fs.existsSync(newFilePath) && fs.lstatSync(newFilePath).isDirectory()) {
-      return reject(new Error("Cannot rename to a directory"));
-    }
-
     try {
-      const fileContent = fs.readFileSync(filePath, "utf-8");
-      fs.writeFileSync(newFilePath, fileContent, "utf-8");
-
-      fs.unlinkSync(filePath);
-
+      fs.renameSync(filePath, newFilePath);
       loadFilesFromDisk();
       resolve(newFilePath);
     } catch (err) {
-      console.error("Error during file rename (copy-delete):", err);
+      console.error("Error during file rename:", err);
       reject(err);
     }
   });
