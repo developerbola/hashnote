@@ -160,6 +160,10 @@ html {
   justify-content: space-between;
 }
 
+.showcase-link-title h3 {
+  max-width: 90%;
+}
+
 .showcase-link:hover {
   background-color: #ffffff09;
 }

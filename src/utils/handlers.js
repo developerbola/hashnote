@@ -16,12 +16,6 @@ export const handleSaveToFile = (filePath, content) => {
       console.warn("Error: content is empty.");
     }
 
-    content = content.replace(/\n{2,}/g, (match) => {
-      const newlineCount = match.length;
-      const spaceCount = Math.floor((newlineCount - 1) / 2);
-      return "\n" + "&#x20;\n".repeat(spaceCount);
-    });
-
     if (!fs.existsSync(appBaseDir)) {
       fs.mkdirSync(appBaseDir, { recursive: true });
     }
