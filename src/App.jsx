@@ -12,6 +12,8 @@ function App() {
   const editorRef = useRef(null);
 
   useEffect(() => {
+    if (!bottomRef.current || !editorRef.current) return;
+
     if (activeFile) {
       bottomRef.current.style.opacity = 0;
       editorRef.current.style.display = "block";
@@ -42,7 +44,20 @@ function App() {
               <Topbar />
               <Bottombar setActiveFile={setActiveFile} />
             </div>
-            <Suspense fallback={<div>Loading Editor...</div>}>
+            <Suspense
+              fallback={
+                <div
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "grid",
+                    placeItems: "center",
+                  }}
+                >
+                  <span className="spinner" />
+                </div>
+              }
+            >
               <MarkdownEditor
                 editorRef={editorRef}
                 setActiveFile={setActiveFile}

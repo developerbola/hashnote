@@ -21,10 +21,7 @@ const Bottombar = ({ setActiveFile }) => {
     <div className={"bottom-bar"}>
       <GitHubActivity  />
       {/* Show active folder data */}
-      <ShowCase
-        data={folders[activeFolder]}
-        setActiveFile={setActiveFile}
-      />
+      <ShowCase data={folders[activeFolder]} setActiveFile={setActiveFile} />
 
       <div className="footbar">
         <div className="folder-links-wrapper">
