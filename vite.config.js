@@ -1,9 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-
-// https://vite.dev/config/
+import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    visualizer({
+      filename: './dist/stats.html',
+      open: true
+    })
+  ],
   server: {
     port: 3005,
   },

@@ -1,14 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Suspense } from "react";
 import Topbar from "./components/Topbar";
 import Bottombar from "./components/Bottombar";
-import MarkdownEditor from "./components/MarkdownEditor";
+const MarkdownEditor = React.lazy(() => import("./components/MarkdownEditor"));
 import { FunctionsProvider } from "./context/FunctionsProvider";
 import { FoldersProvider } from "./context/FoldersProvider";
 import { GithubProvider } from "./context/GithubProvider";
 
 function App() {
   const [activeFile, setActiveFile] = useState(false);
-
   const bottomRef = useRef(null);
   const editorRef = useRef(null);
 
@@ -41,15 +40,15 @@ function App() {
           <div className="container">
             <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
               <Topbar />
-              <Bottombar
-                setActiveFile={setActiveFile}
-              />
+              <Bottombar setActiveFile={setActiveFile} />
             </div>
-            <MarkdownEditor
-              editorRef={editorRef}
-              setActiveFile={setActiveFile}
-              activeFile={activeFile}
-            />
+            <Suspense fallback={<div>Loading Editor...</div>}>
+              <MarkdownEditor
+                editorRef={editorRef}
+                setActiveFile={setActiveFile}
+                activeFile={activeFile}
+              />
+            </Suspense>
           </div>
         </GithubProvider>
       </FoldersProvider>
