@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Topbar from "./components/Topbar";
 import Bottombar from "./components/Bottombar";
 const MarkdownEditor = React.lazy(() => import("./components/MarkdownEditor"));
@@ -44,26 +44,11 @@ function App() {
               <Topbar />
               <Bottombar setActiveFile={setActiveFile} />
             </div>
-            <Suspense
-              fallback={
-                <div
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    display: "grid",
-                    placeItems: "center",
-                  }}
-                >
-                  <span className="spinner" />
-                </div>
-              }
-            >
-              <MarkdownEditor
-                editorRef={editorRef}
-                setActiveFile={setActiveFile}
-                activeFile={activeFile}
-              />
-            </Suspense>
+            <MarkdownEditor
+              editorRef={editorRef}
+              setActiveFile={setActiveFile}
+              activeFile={activeFile}
+            />
           </div>
         </GithubProvider>
       </FoldersProvider>
