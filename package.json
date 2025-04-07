@@ -35,11 +35,6 @@
     "build-electron": "electron-builder",
     "package": "npm run build-renderer && npm run build-electron"
   },
-  "dependencies": {
-    "@codemirror/state": "^6.5.2",
-    "@codemirror/view": "^6.36.5",
-    "unist-util-visit": "^5.0.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@mdxeditor/editor": "^3.29.1",
@@ -55,7 +50,6 @@
     "marked": "^15.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "rollup-plugin-visualizer": "^5.14.0",
     "vite": "^6.2.0"
   }
 }

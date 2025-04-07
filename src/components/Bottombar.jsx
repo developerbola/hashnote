@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import GitHubActivity from "./GitHubActivity";
 import ShowCase from "./ShowCase";
-import AboutButton from "./AboutButton";
 import { readToken } from "../utils/readDataFromFile";
 import { useFolders } from "../context/FoldersProvider";
 
@@ -45,7 +44,6 @@ const Bottombar = ({ setActiveFile }) => {
             </button>
           ))}
         </div>
-        <AboutButton />
       </div>
     </div>
   );
