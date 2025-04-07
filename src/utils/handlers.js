@@ -14,6 +14,7 @@ export const handleSaveToFile = (filePath, content) => {
 
     if (!content) {
       console.warn("Error: content is empty.");
+      content = "";
     }
 
     if (!fs.existsSync(appBaseDir)) {

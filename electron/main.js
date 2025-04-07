@@ -11,8 +11,8 @@ let splashWindow;
 function createWindow() {
   // Splash screen window
   splashWindow = new BrowserWindow({
-    width: 300,
-    height: 300,
+    width: 600,
+    height: 600,
     frame: false,
     alwaysOnTop: true,
     transparent: true,
@@ -31,7 +31,6 @@ function createWindow() {
     transparent: true,
     backgroundColor: "#151515",
     webPreferences: {
-      preload: `file://${__dirname}/preload.js`,
       nodeIntegration: true,
       contextIsolation: false,
     },
