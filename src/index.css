@@ -68,7 +68,7 @@ html {
 
 .container {
   padding: 25px 30px;
-  max-width: 550px;
+  max-width: 500px;
   max-height: 600px;
   overflow: auto;
   margin: auto;
@@ -96,7 +96,7 @@ html {
 }
 
 .showcase-wrapper {
-  padding: 10px;
+  padding: 10px 0;
   max-height: 250px;
   overflow-y: auto;
 }
