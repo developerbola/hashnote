@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.tauri.app/config/1",
+  "build": {
+    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "Hashnote",
+    "version": "2.0.0"
+  },
+  "tauri": {
+    "macOSPrivateApi": true,
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "copyFile": true,
+        "createDir": true,
+        "exists": true,
+        "readDir": true,
+        "readFile": true,
+        "removeDir": true,
+        "removeFile": true,
+        "renameFile": true,
+        "scope": ["$HOME/.hashnote", "$HOME/.hashnote/*"],
+        "writeFile": true
+      },
+      "window": {
+        "all": true,
+        "startDragging": true
+      }
+    },
+    "windows": [
+      {
+        "title": "Hashnote",
+        "width": 600,
+        "height": 600,
+        "decorations": false,
+        "resizable": false,
+        "transparent": true
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.hashnote.app",
+      "icon": ["icons/icon.icns"]
+    }
+  }
+}
