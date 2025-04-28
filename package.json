@@ -13,11 +13,12 @@
     "@mdxeditor/editor": "1.14.3",
     "@tauri-apps/api": "^1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tauri-plugin-fs-extra-api": "github:tauri-apps/tauri-plugin-fs-extra#v1"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1",
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.3",
-    "@tauri-apps/cli": "^1"
+    "vite": "^6.0.3"
   }
 }

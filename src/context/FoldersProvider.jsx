@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { FoldersContext } from "./context";
 import { createDir, exists, readDir } from "@tauri-apps/api/fs";
+import { metadata } from "tauri-plugin-fs-extra-api";
 import { homeDir, join } from "@tauri-apps/api/path";
 
 export const FoldersProvider = ({ children }) => {
@@ -10,10 +11,27 @@ export const FoldersProvider = ({ children }) => {
     try {
       const home = await homeDir();
       const appBaseDir = await join(home, ".hashnote");
-      if (!exists(appBaseDir)) {
-        createDir(home, ".hashnote");
+      if (!(await exists(appBaseDir))) {
+        await createDir(appBaseDir);
       }
-      setFolders(await readDir(appBaseDir));
+
+      const files = await readDir(appBaseDir);
+
+      const filesWithMeta = await Promise.all(
+        files.map(async (file) => {
+          const fileMetadata = await metadata(file.path); // Correct use of metadata
+          return {
+            ...file,
+            createdAt: fileMetadata.createdAt, // Access createdAt properly
+          };
+        })
+      );
+
+      const sortedFiles = filesWithMeta.sort(
+        (a, b) => (b.createdAt || 0) - (a.createdAt || 0) // Sort by createdAt
+      );
+
+      setFolders(sortedFiles);
     } catch (err) {
       console.error("Error loading files:", err);
     }

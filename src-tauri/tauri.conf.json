@@ -58,5 +58,8 @@
       "identifier": "com.hashnote.app",
       "icon": ["icons/icon.icns"]
     }
+  },
+  "plugins": {
+    "fs-extra": {}
   }
 }
