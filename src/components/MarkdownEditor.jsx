@@ -13,7 +13,7 @@ import { useFunctions } from "../context/FunctionsProvider";
 import { useFolders } from "../context/FoldersProvider";
 import { handleRenameFile, handleSaveToFile } from "../utils/handlers";
 
-const MarkdownEditor = ({ editorRef, setActiveFile }) => {
+const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
   const { editorValue, setEditorValue, filePath } = useFunctions();
   const { loadFilesFromDisk } = useFolders();
   const mdxEditorRef = useRef(null);
@@ -30,6 +30,8 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     if (mdxEditorRef.current && mdxEditorRef.current.setMarkdown) {
       mdxEditorRef.current.setMarkdown(editorValue);
     }
+    mdxEditorRef.current.setMarkdown(editorValue);
+    console.log(editorValue);
   }, [editorValue]);
 
   const exitAndSave = async (e) => {
@@ -41,7 +43,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
     } else {
       return;
     }
-
     if (!filePathRef.current || filePathRef.current.trim() === "") {
       console.error("Error: filePath is empty or undefined.");
       return;
@@ -105,7 +106,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile }) => {
         contentEditableClassName="mdx-editor"
         onChange={handleEditorChange}
         markdown={editorValue}
-        spellCheck={false}
       />
     </div>
   );

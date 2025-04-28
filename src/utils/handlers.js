@@ -28,6 +28,28 @@ export const handleSaveToFile = async (filePath, content) => {
       content = "";
     }
 
+    // Split content by lines
+    const lines = content.split("\n");
+
+    let emptyLineCount = 0;
+    for (let i = 0; i < lines.length; i++) {
+      // Check if the line is empty
+      if (lines[i].trim() === "") {
+        emptyLineCount++;
+
+        // If we've encountered 2 empty lines, replace the next empty line with &#x20;
+        if (emptyLineCount === 2) {
+          lines[i] = "&#x20;";
+          emptyLineCount = 0; // Reset the counter after replacing
+        }
+      } else {
+        emptyLineCount = 0; // Reset if we encounter a non-empty line
+      }
+    }
+
+    // Join the lines back into a string with newlines
+    content = lines.join("\n");
+
     const baseExists = await exists(appBaseDir);
     if (!baseExists) {
       await createDir(appBaseDir, { recursive: true });

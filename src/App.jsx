@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import MarkdownEditor from "./components/MarkdownEditor";
-import Bottombar from "./components/Bottombar";
+import ShowCase from "./components/ShowCase";
 import { FunctionsProvider } from "./context/FunctionsProvider";
 import { FoldersProvider } from "./context/FoldersProvider";
 
@@ -15,7 +15,6 @@ function App() {
     if (activeFile) {
       bottomRef.current.style.opacity = 0;
       editorRef.current.style.display = "block";
-      
       setTimeout(() => {
         bottomRef.current.style.display = "none";
         editorRef.current.style.zIndex = "10";
@@ -40,8 +39,12 @@ function App() {
       <FoldersProvider>
         <div className="drag-place" data-tauri-drag-region></div>
         <div className="container">
-          <div ref={bottomRef} style={{ transition: "all 200ms ease" }}>
-            <Bottombar setActiveFile={setActiveFile} />
+          <div
+            ref={bottomRef}
+            style={{ transition: "all 200ms ease" }}
+            className="bottom-bar"
+          >
+            <ShowCase setActiveFile={setActiveFile} />
           </div>
           <MarkdownEditor
             editorRef={editorRef}

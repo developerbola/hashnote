@@ -42,7 +42,7 @@
     "windows": [
       {
         "title": "Hashnote",
-        "width": 600,
+        "width": 550,
         "height": 600,
         "decorations": false,
         "resizable": false,
