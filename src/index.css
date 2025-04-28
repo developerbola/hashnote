@@ -67,10 +67,8 @@ html {
 .container {
   padding: 25px 30px;
   max-width: 600px;
-  min-height: 100vh;
   margin: auto;
 }
-
 
 .showcase-header {
   display: flex;

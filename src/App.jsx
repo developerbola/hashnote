@@ -15,16 +15,19 @@ function App() {
     if (activeFile) {
       bottomRef.current.style.opacity = 0;
       editorRef.current.style.display = "block";
-
+      
       setTimeout(() => {
         bottomRef.current.style.display = "none";
+        editorRef.current.style.zIndex = "10";
         editorRef.current.style.opacity = 1;
       }, 200);
     } else {
       editorRef.current.style.opacity = 0;
       setTimeout(() => {
         editorRef.current.style.display = "none";
+        editorRef.current.style.zIndex = "1";
         bottomRef.current.style.display = "block";
+        bottomRef.current.style.zIndex = "10";
         setTimeout(() => {
           bottomRef.current.style.opacity = 1;
         }, 10);
