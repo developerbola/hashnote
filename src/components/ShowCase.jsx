@@ -10,22 +10,15 @@ const ShowCase = ({ setActiveFile }) => {
     loadFilesFromDisk();
   }, []);
 
+  window.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "n") {
+      e.preventDefault();
+      handleCreateNewFile(folders, loadFilesFromDisk);
+    }
+  });
+
   return (
     <div>
-      <div className="showcase-header">
-        <div className="showcase-title">
-          <h3 className="title">Notes</h3>
-          <img src={"./svg_icons/notes.svg"} height={20} width={20} />
-        </div>
-        <div>
-          <button
-            className="new-button"
-            onClick={() => handleCreateNewFile(folders, loadFilesFromDisk)}
-          >
-            <img src="./svg_icons/plus.svg" height={17} width={17} />
-          </button>
-        </div>
-      </div>
       <div className="showcase-wrapper">
         {folders?.map((note, idx) => (
           <div
