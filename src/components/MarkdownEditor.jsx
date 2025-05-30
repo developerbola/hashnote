@@ -1,8 +1,6 @@
 import {
   MDXEditor,
   headingsPlugin,
-  linkPlugin,
-  listsPlugin,
   markdownShortcutPlugin,
   quotePlugin,
   thematicBreakPlugin,
@@ -31,7 +29,6 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
       mdxEditorRef.current.setMarkdown(editorValue);
     }
     mdxEditorRef.current.setMarkdown(editorValue);
-    console.log(editorValue);
   }, [editorValue]);
 
   const exitAndSave = async (e) => {
@@ -80,10 +77,43 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
 
   useEffect(() => {
     const wrapper = document.getElementById("mdx-wrapper");
+
     if (!wrapper) return;
     wrapper.addEventListener("wheel", exitAndSave);
     return () => wrapper.removeEventListener("wheel", exitAndSave);
   }, []);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const blockquotes = document.querySelectorAll(".mdx-editor blockquote");
+
+      blockquotes.forEach((el) => {
+        const text = el.innerText;
+
+        if (text.includes("??")) {
+          el.style.borderLeft = "2px solid #ff3b3b";
+          el.style.background = "#ff3b3b20";
+        } else if (text.includes("!!")) {
+          el.style.borderLeft = "2px solid #ffc107";
+          el.style.background = "#ffc10720";
+        } else if (text.includes("::")) {
+          el.style.borderLeft = "2px solid #17a2b8";
+          el.style.background = "#17a2b820";
+        } else {
+          el.style.borderLeft = "";
+          el.style.background = "";
+        }
+      });
+    });
+
+    const target = document.querySelector(".mdx-editor");
+
+    if (target) {
+      observer.observe(target, { childList: true, subtree: true });
+    }
+
+    return () => observer.disconnect();
+  }, [activeFile]);
 
   const handleEditorChange = (newValue) => {
     if (newValue !== editorValue) {
@@ -98,14 +128,13 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
         plugins={[
           headingsPlugin(),
           quotePlugin({}),
-          listsPlugin(),
-          linkPlugin({}),
           markdownShortcutPlugin(),
           thematicBreakPlugin(),
         ]}
         contentEditableClassName="mdx-editor"
         onChange={handleEditorChange}
         markdown={editorValue}
+        contentEditableProps={{ spellCheck: false }}
       />
     </div>
   );

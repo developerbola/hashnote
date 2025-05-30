@@ -130,7 +130,7 @@ body {
   transition: all 200ms ease;
   cursor: text;
   margin-top: -15px;
-  padding: 25px 30px;
+  padding: 25px 20px;
   min-height: 465px;
   overflow-y: scroll;
 }
