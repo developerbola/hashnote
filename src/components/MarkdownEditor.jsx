@@ -4,6 +4,7 @@ import {
   markdownShortcutPlugin,
   quotePlugin,
   thematicBreakPlugin,
+  listsPlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { useEffect, useRef } from "react";
@@ -97,11 +98,8 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
           el.style.borderLeft = "2px solid #ffc107";
           el.style.background = "#ffc10720";
         } else if (text.includes("::")) {
-          el.style.borderLeft = "2px solid #17a2b8";
-          el.style.background = "#17a2b820";
-        } else {
-          el.style.borderLeft = "";
-          el.style.background = "";
+          el.style.borderLeft = "2px solid #17b832";
+          el.style.background = "#17b83220";
         }
       });
     });
@@ -130,6 +128,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
           quotePlugin({}),
           markdownShortcutPlugin(),
           thematicBreakPlugin(),
+          listsPlugin(),
         ]}
         contentEditableClassName="mdx-editor"
         onChange={handleEditorChange}

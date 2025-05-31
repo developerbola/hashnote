@@ -33,6 +33,11 @@
   font-style: italic;
 }
 
+:root {
+  --main-bg: #151515;
+  --app-rounded: 10px;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -52,8 +57,8 @@ img {
 }
 
 html {
-  background: #151515;
-  border-radius: 10px;
+  background: var(--main-bg);
+  border-radius: var(--app-rounded);
   overflow: hidden;
 }
 
@@ -69,6 +74,7 @@ body {
   -webkit-app-region: drag;
   width: 100%;
   height: 25px;
+  z-index: 99;
 }
 
 .container {
@@ -135,6 +141,10 @@ body {
   overflow-y: scroll;
 }
 
+.mdx-editor {
+  min-height: 465px;
+}
+
 .mdx-editor,
 .mdx-editor > * {
   border: none;
@@ -197,11 +207,17 @@ code span {
   background: #ffffff15 !important;
 }
 
-._listItemUnchecked_1tncs_74::before {
+/* CHECKBOX */
+._listItemUnchecked_1xkrx_74,
+._listItemChecked_1xkrx_73 {
+  cursor: pointer;
+}
+
+._listItemUnchecked_1xkrx_74::before {
   border-radius: 4px !important;
 }
 
-._listItemChecked_1tncs_73::before {
+._listItemChecked_1xkrx_73::before {
   border-radius: 4px !important;
   background-color: white !important;
   border: none !important;
@@ -209,14 +225,14 @@ code span {
   width: 18px !important;
 }
 
-._listItemChecked_1tncs_73::after {
+._listItemChecked_1xkrx_73::after {
   top: 3px !important;
   border-width: 0 1.5px 1.5px 0 !important;
   border-color: black !important;
 }
 
-._listItemUnchecked_1tncs_74:focus::before,
-._listItemChecked_1tncs_73:focus::before {
+._listItemUnchecked_1xkrx_74:focus::before,
+._listItemChecked_1xkrx_73:focus::before {
   box-shadow: none !important;
   border-radius: 4px !important;
 }
