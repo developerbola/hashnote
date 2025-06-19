@@ -186,31 +186,6 @@ code span {
   border: 1px solid #ffffff30;
 }
 
-._linkDialogPopoverContent_uazmk_600 {
-  background: #181818 !important;
-  border: 1px solid #ffffff10 !important;
-  padding: 3px 10px !important;
-}
-
-._linkDialogPopoverContent_uazmk_600 button:hover {
-  background: #191919 !important;
-  cursor: pointer;
-}
-
-._linkDialogPopoverContent_uazmk_600 input {
-  background: transparent !important;
-  border: 1px solid #ffffff11;
-}
-
-._linkDialogPopoverContent_uazmk_600 form button {
-  background: #ffffff08 !important;
-  border: none;
-}
-
-._linkDialogPopoverContent_uazmk_600 form button:hover {
-  background: #ffffff15 !important;
-}
-
 /* CHECKBOX */
 li[aria-checked="false"]::before,
 li[aria-checked="false"]::after,
