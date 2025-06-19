@@ -131,6 +131,8 @@ html {
 
 .mdx-editor {
   height: 500px;
+  cursor: text;
+  pointer-events: auto;
 }
 
 .mdx-editor,
@@ -140,6 +142,7 @@ html {
   caret-color: #fff;
   font-family: Montserrat;
   font-weight: normal;
+  cursor: default;
 }
 
 .mdx-editor blockquote,
@@ -165,7 +168,6 @@ blockquote.green {
   background: #17b83220;
 }
 
-
 .mdx-editor p a span,
 .mdx-editor p a {
   color: #00a2ff;
@@ -187,12 +189,13 @@ code span {
 }
 
 /* CHECKBOX */
-li[aria-checked="false"]::before,
-li[aria-checked="false"]::after,
-li[aria-checked="true"]::before,
-li[aria-checked="true"]::after {
+.mdx-editor li[aria-checked="false"]::before:focus,
+.mdx-editor li[aria-checked="false"]::after:focus,
+.mdx-editor li[aria-checked="true"]::before:focus,
+.mdx-editor li[aria-checked="true"]::after:focus {
   cursor: pointer;
   z-index: 99;
+  pointer-events: auto;
 }
 
 li[aria-checked="false"]::before {
