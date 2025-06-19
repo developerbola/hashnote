@@ -209,6 +209,9 @@ li[aria-checked="true"]::before {
   height: 18px !important;
   width: 18px !important;
 }
+li[aria-checked="true"] {
+  text-decoration: none!important;
+}
 
 li[aria-checked="true"]::after {
   top: 3px !important;
