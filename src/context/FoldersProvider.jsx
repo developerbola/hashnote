@@ -19,16 +19,16 @@ export const FoldersProvider = ({ children }) => {
 
       const filesWithMeta = await Promise.all(
         files.map(async (file) => {
-          const fileMetadata = await metadata(file.path); // Correct use of metadata
+          const fileMetadata = await metadata(file.path);
           return {
             ...file,
-            createdAt: fileMetadata.createdAt, // Access createdAt properly
+            createdAt: fileMetadata.createdAt,
           };
         })
       );
 
       const sortedFiles = filesWithMeta.sort(
-        (a, b) => (b.createdAt || 0) - (a.createdAt || 0) // Sort by createdAt
+        (a, b) => (b.createdAt || 0) - (a.createdAt || 0)
       );
 
       setFolders(sortedFiles);
