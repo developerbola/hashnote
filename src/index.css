@@ -150,6 +150,22 @@ blockquote {
   margin: 5px 0;
 }
 
+blockquote.red {
+  border-left: 2px solid #ff3b3b;
+  background: #ff3b3b20;
+}
+
+blockquote.yellow {
+  border-left: 2px solid #ffc107;
+  background: #ffc10720;
+}
+
+blockquote.green {
+  border-left: 2px solid #17b832;
+  background: #17b83220;
+}
+
+
 .mdx-editor p a span,
 .mdx-editor p a {
   color: #00a2ff;

@@ -91,15 +91,12 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
       blockquotes.forEach((el) => {
         const text = el.innerText;
 
-        if (text.includes("??")) {
-          el.style.borderLeft = "2px solid #ff3b3b";
-          el.style.background = "#ff3b3b20";
-        } else if (text.includes("!!")) {
-          el.style.borderLeft = "2px solid #ffc107";
-          el.style.background = "#ffc10720";
-        } else if (text.includes("::")) {
-          el.style.borderLeft = "2px solid #17b832";
-          el.style.background = "#17b83220";
+        if (text.startsWith("?? ")) {
+          el.classList.add("red");
+        } else if (text.startsWith("!! ")) {
+          el.classList.add("yellow");
+        } else if (text.startsWith(":: ")) {
+          el.classList.add("green");
         }
       });
     });
