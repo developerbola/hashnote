@@ -43,6 +43,7 @@
   margin: 0;
   box-sizing: border-box;
   color: #fff;
+  transition: 300ms ease;
 }
 
 ::-webkit-scrollbar {
@@ -68,6 +69,7 @@ html {
   width: 100%;
   height: 25px;
   z-index: 99;
+  cursor: grab;
 }
 
 .container {
@@ -130,9 +132,8 @@ html {
 }
 
 .mdx-editor {
-  height: 500px;
   cursor: text;
-  pointer-events: auto;
+  height: 500px;
 }
 
 .mdx-editor,
@@ -142,7 +143,6 @@ html {
   caret-color: #fff;
   font-family: Montserrat;
   font-weight: normal;
-  cursor: default;
 }
 
 .mdx-editor blockquote,
@@ -189,13 +189,9 @@ code span {
 }
 
 /* CHECKBOX */
-.mdx-editor li[aria-checked="false"]::before:focus,
-.mdx-editor li[aria-checked="false"]::after:focus,
-.mdx-editor li[aria-checked="true"]::before:focus,
-.mdx-editor li[aria-checked="true"]::after:focus {
-  cursor: pointer;
-  z-index: 99;
-  pointer-events: auto;
+li[aria-checked="true"],
+li[aria-checked="false"] {
+  cursor: default;
 }
 
 li[aria-checked="false"]::before {
@@ -208,21 +204,25 @@ li[aria-checked="true"]::before {
   border: none !important;
   height: 18px !important;
   width: 18px !important;
+  cursor: pointer !important;
 }
+
 li[aria-checked="true"] {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 li[aria-checked="true"]::after {
   top: 3px !important;
   border-width: 0 1.5px 1.5px 0 !important;
   border-color: black !important;
+  cursor: pointer !important;
 }
 
 li[aria-checked="false"]:focus::before,
 li[aria-checked="true"]:focus::before {
   box-shadow: none !important;
   border-radius: 4px !important;
+  cursor: pointer !important;
 }
 
 .bottom-bar {
