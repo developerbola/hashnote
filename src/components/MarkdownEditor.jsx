@@ -35,7 +35,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
   const exitAndSave = async (e) => {
     const now = Date.now();
 
-    if (e.deltaX < -20 && now - lastTriggerTimeRef.current > 500) {
+    if (e.deltaX < -50 && now - lastTriggerTimeRef.current > 500) {
       setActiveFile(false);
       lastTriggerTimeRef.current = now;
     } else {

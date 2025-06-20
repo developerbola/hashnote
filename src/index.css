@@ -128,12 +128,13 @@ html {
   display: none;
   opacity: 0;
   transition: all 200ms ease;
-  padding: 7px 20px 25px 20px;
+  padding: 0px 20px 25px 20px;
 }
 
 .mdx-editor {
   cursor: text;
-  height: 500px;
+  margin-top: 7px;
+  height: 493px;
 }
 
 .mdx-editor,
@@ -191,7 +192,16 @@ code span {
 /* CHECKBOX */
 li[aria-checked="true"],
 li[aria-checked="false"] {
-  cursor: default;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+li[aria-checked="true"]::before,
+li[aria-checked="true"]::after,
+li[aria-checked="false"]::before,
+li[aria-checked="false"]::after {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 li[aria-checked="false"]::before {
@@ -204,7 +214,6 @@ li[aria-checked="true"]::before {
   border: none !important;
   height: 18px !important;
   width: 18px !important;
-  cursor: pointer !important;
 }
 
 li[aria-checked="true"] {
@@ -215,7 +224,6 @@ li[aria-checked="true"]::after {
   top: 3px !important;
   border-width: 0 1.5px 1.5px 0 !important;
   border-color: black !important;
-  cursor: pointer !important;
 }
 
 li[aria-checked="false"]:focus::before,
