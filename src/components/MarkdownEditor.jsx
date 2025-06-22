@@ -85,7 +85,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
   }, []);
 
   useEffect(() => {
-    const observer = new MutationObserver(() => {
+    setTimeout(() => {
       const blockquotes = document.querySelectorAll(".mdx-editor blockquote");
 
       blockquotes.forEach((el) => {
@@ -99,15 +99,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
           el.classList.add("green");
         }
       });
-    });
-
-    const target = document.querySelector(".mdx-editor");
-
-    if (target) {
-      observer.observe(target, { childList: true, subtree: true });
-    }
-
-    return () => observer.disconnect();
+    }, 100);
   }, [activeFile]);
 
   const handleEditorChange = (newValue) => {
