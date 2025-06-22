@@ -189,6 +189,38 @@ code span {
   border: 1px solid #ffffff30;
 }
 
+blockquote:has(code span.red),
+blockquote:has(code span.yellow),
+blockquote:has(code span.green) {
+  padding: 5px 10px;
+}
+
+code span.red,
+code span.yellow,
+code span.green {
+  border: none !important;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 3px;
+  margin-right: 5px;
+}
+
+code span.red {
+  color: #ff3b3b;
+  background: #ff00003b !important;
+}
+
+code span.yellow {
+  color: #ffc107;
+  background: #ffe10023 !important;
+}
+
+code span.green {
+  color: #17b832;
+  background: #00ff1e23 !important;
+}
+
 /* CHECKBOX */
 li[aria-checked="true"],
 li[aria-checked="false"] {

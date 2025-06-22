@@ -87,9 +87,32 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
   useEffect(() => {
     setTimeout(() => {
       const blockquotes = document.querySelectorAll(".mdx-editor blockquote");
-
       blockquotes.forEach((el) => {
         const text = el.innerText;
+        const codeSpan = el.querySelector("code span");
+
+        if (text.startsWith("?? ")) {
+          el.classList.add("red");
+          if (codeSpan.innerText === "??") {
+            codeSpan.classList.add("red");
+          }
+        } else if (text.startsWith("!! ")) {
+          el.classList.add("yellow");
+          if (codeSpan.innerText === "!!") {
+            codeSpan.classList.add("yellow");
+          }
+        } else if (text.startsWith(":: ")) {
+          el.classList.add("green");
+          if (codeSpan.innerText === "::") {
+            codeSpan.classList.add("green");
+          }
+        }
+      });
+
+      const codeSpan = document.querySelectorAll(".mdx-editor code span");
+      codeSpan.forEach((el) => {
+        const text = el.innerText;
+        console.log(el);
 
         if (text.startsWith("?? ")) {
           el.classList.add("red");
@@ -100,7 +123,7 @@ const MarkdownEditor = ({ editorRef, setActiveFile, activeFile }) => {
         }
       });
     }, 100);
-  }, [activeFile]);
+  }, [activeFile, editorValue]);
 
   const handleEditorChange = (newValue) => {
     if (newValue !== editorValue) {
